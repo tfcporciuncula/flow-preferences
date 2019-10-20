@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+  compileSdkVersion buildConfig.compileSdk
+  buildToolsVersion buildConfig.buildTools
+
+  defaultConfig {
+    applicationId 'com.tfcporciuncula.flow.sample'
+    minSdkVersion buildConfig.minSdk
+    targetSdkVersion buildConfig.targetSdk
+    versionCode 1
+    versionName '1.0'
+
+    multiDexEnabled true
+  }
+
+  kotlinOptions {
+    jvmTarget = JavaVersion.VERSION_1_8
+  }
+}
+
+dependencies {
+  implementation project(':flow-preferences')
+
+  implementation deps.kotlin.stdlib.jdk7
+  implementation deps.kotlin.coroutines.core
+  implementation deps.kotlin.coroutines.android
+
+  implementation deps.androidx.coreKtx
+  implementation deps.androidx.lifecycleKtx
+  implementation deps.androidx.preferenceKtx
+  implementation deps.androidx.constraintLayout
+}

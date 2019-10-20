@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:padding="32dp"
+  tools:context=".SampleActivity"
+  >
+
+  <TextView
+    android:id="@+id/secondsInForegroundLabelTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/seconds_in_foreground_label"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    />
+
+  <TextView
+    android:id="@+id/secondsInForegroundTextView"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:textStyle="bold"
+    app:layout_constraintBaseline_toBaselineOf="@+id/secondsInForegroundLabelTextView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/secondsInForegroundLabelTextView"
+    tools:text="10"
+    />
+
+  <EditText
+    android:id="@+id/inputEditText"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:hint="@string/input_hint"
+    android:importantForAutofill="no"
+    android:inputType="text"
+    android:maxLines="1"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.25"
+    />
+
+  <TextView
+    android:id="@+id/outputLabelTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:maxLines="1"
+    android:text="@string/output_label"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/inputEditText"
+    />
+
+  <TextView
+    android:id="@+id/outputTextView"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:textStyle="bold"
+    app:layout_constraintBaseline_toBaselineOf="@+id/outputLabelTextView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/outputLabelTextView"
+    tools:text="[empty]"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

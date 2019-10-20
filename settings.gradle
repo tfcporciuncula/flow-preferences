@@ -1,0 +1,5 @@
+include ':flow-preferences'
+include ':flow-preferences-tests'
+include ':flow-preferences-sample'
+
+rootProject.name = 'flow-preferences-root'

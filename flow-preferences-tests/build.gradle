@@ -1,0 +1,31 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+  compileSdkVersion buildConfig.compileSdk
+  buildToolsVersion buildConfig.buildTools
+
+  defaultConfig {
+    minSdkVersion buildConfig.minSdk
+    targetSdkVersion buildConfig.targetSdk
+
+    multiDexEnabled true
+
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+}
+
+dependencies {
+  implementation project(':flow-preferences')
+
+  androidTestImplementation deps.kotlin.stdlib.jdk7
+  androidTestImplementation deps.kotlin.coroutines.core
+  androidTestImplementation deps.kotlin.coroutines.test
+
+  androidTestImplementation deps.androidx.test.core
+  androidTestImplementation deps.androidx.test.junit
+  androidTestImplementation deps.androidx.test.espresso
+  androidTestImplementation deps.androidx.preferenceKtx
+
+  androidTestImplementation deps.truth
+}
