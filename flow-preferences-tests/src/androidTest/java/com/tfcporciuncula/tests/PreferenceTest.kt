@@ -21,6 +21,16 @@ class PreferenceTest : BaseTest() {
     assertThat(preference.isSet()).isTrue()
   }
 
+  @Test fun testIsNotSet() {
+    val preference = flowSharedPreferences.getBoolean("key", defaultValue = false)
+
+    assertThat(preference.isNotSet()).isTrue()
+
+    preference.set(true)
+
+    assertThat(preference.isNotSet()).isFalse()
+  }
+
   @Test fun testDelete() {
     val preference = flowSharedPreferences.getString("key", defaultValue = "")
     preference.set("some value")

@@ -17,6 +17,8 @@ interface Preference<T> {
 
   fun isSet(): Boolean
 
+  fun isNotSet(): Boolean
+
   fun delete()
 
   suspend fun deleteAndCommit(): Boolean
@@ -35,6 +37,8 @@ interface Preference<T> {
   ) : Preference<T> {
 
     override fun isSet() = sharedPreferences.contains(key)
+
+    override fun isNotSet() = !sharedPreferences.contains(key)
 
     override fun delete() = sharedPreferences.edit().remove(key).apply()
 
@@ -57,9 +61,7 @@ interface Preference<T> {
       object : FlowCollector<T> {
         override suspend fun emit(value: T) {
           if (!setAndCommit(value) && throwOnFailure) {
-            throw ValueNotPersistedException(
-              "Value [$value] failed to be written to persistent storage."
-            )
+            throw ValueNotPersistedException("Value [$value] failed to be written to persistent storage.")
           }
         }
       }
