@@ -16,5 +16,5 @@ abstract class BaseTest {
   private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
   protected val flowSharedPreferences = FlowSharedPreferences(sharedPreferences)
 
-  @Before open fun setup() = sharedPreferences.edit().clear().apply()
+  @Before fun setup() = flowSharedPreferences.clear()
 }
