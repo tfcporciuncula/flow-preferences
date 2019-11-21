@@ -12,7 +12,7 @@ class EnumPreference<T : Enum<T>>(
   private val key: String,
   private val enumClass: Class<T>,
   private val defaultValue: T
-) : Preference.Base<T>(keyFlow, sharedPreferences, key) {
+) : Preference<T>(keyFlow, sharedPreferences, key) {
 
   override fun get(): T = sharedPreferences.getString(key, null)?.let { valueOf(enumClass, it) } ?: defaultValue
 

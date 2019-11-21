@@ -10,7 +10,7 @@ class FloatPreference(
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val defaultValue: Float
-) : Preference.Base<Float>(keyFlow, sharedPreferences, key) {
+) : Preference<Float>(keyFlow, sharedPreferences, key) {
 
   override fun get() = sharedPreferences.getFloat(key, defaultValue)
 

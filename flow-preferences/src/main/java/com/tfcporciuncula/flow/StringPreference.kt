@@ -10,7 +10,7 @@ class StringPreference(
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val defaultValue: String
-) : Preference.Base<String>(keyFlow, sharedPreferences, key) {
+) : Preference<String>(keyFlow, sharedPreferences, key) {
 
   override fun get() = sharedPreferences.getString(key, defaultValue)!!
 

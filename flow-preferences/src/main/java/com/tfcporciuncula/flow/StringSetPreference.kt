@@ -10,7 +10,7 @@ class StringSetPreference(
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val defaultValue: Set<String>
-) : Preference.Base<Set<String>>(keyFlow, sharedPreferences, key) {
+) : Preference<Set<String>>(keyFlow, sharedPreferences, key) {
 
   override fun get(): Set<String> = sharedPreferences.getStringSet(key, defaultValue)!!
 

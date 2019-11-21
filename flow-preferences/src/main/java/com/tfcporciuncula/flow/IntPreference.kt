@@ -10,7 +10,7 @@ class IntPreference(
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val defaultValue: Int
-) : Preference.Base<Int>(keyFlow, sharedPreferences, key) {
+) : Preference<Int>(keyFlow, sharedPreferences, key) {
 
   override fun get() = sharedPreferences.getInt(key, defaultValue)
 

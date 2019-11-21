@@ -7,65 +7,47 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
 
-interface Preference<T> {
+abstract class Preference<T>(
+  private val keyFlow: Flow<String>,
+  private val sharedPreferences: SharedPreferences,
+  private val key: String
+) {
 
-  fun get(): T
+  private class ValueNotPersistedException(message: String) : RuntimeException(message)
 
-  fun set(value: T)
+  abstract fun get(): T
 
-  suspend fun setAndCommit(value: T): Boolean
+  abstract fun set(value: T)
 
-  fun isSet(): Boolean
+  abstract suspend fun setAndCommit(value: T): Boolean
 
-  fun isNotSet(): Boolean
+  fun isSet() = sharedPreferences.contains(key)
 
-  fun delete()
+  fun isNotSet() = !sharedPreferences.contains(key)
 
-  suspend fun deleteAndCommit(): Boolean
+  fun delete() = sharedPreferences.edit().remove(key).apply()
 
-  fun asFlow(): Flow<T>
+  suspend fun deleteAndCommit() =
+    withContext(Dispatchers.IO) { sharedPreferences.edit().remove(key).commit() }
 
-  fun asCollector(): FlowCollector<T>
+  @ExperimentalCoroutinesApi fun asFlow() =
+    keyFlow
+      .filter { it == key }
+      .onStart { emit("first load trigger") }
+      .map { get() }
+      .buffer(Channel.CONFLATED)
 
-  fun asSyncCollector(throwOnFailure: Boolean = false): FlowCollector<T>
+  fun asCollector() =
+    object : FlowCollector<T> {
+      override suspend fun emit(value: T) = set(value)
+    }
 
-
-  abstract class Base<T>(
-    private val keyFlow: Flow<String>,
-    private val sharedPreferences: SharedPreferences,
-    private val key: String
-  ) : Preference<T> {
-
-    override fun isSet() = sharedPreferences.contains(key)
-
-    override fun isNotSet() = !sharedPreferences.contains(key)
-
-    override fun delete() = sharedPreferences.edit().remove(key).apply()
-
-    override suspend fun deleteAndCommit() =
-      withContext(Dispatchers.IO) { sharedPreferences.edit().remove(key).commit() }
-
-    @ExperimentalCoroutinesApi override fun asFlow() =
-      keyFlow
-        .filter { it == key }
-        .onStart { emit("first load trigger") }
-        .map { get() }
-        .buffer(Channel.CONFLATED)
-
-    override fun asCollector() =
-      object : FlowCollector<T> {
-        override suspend fun emit(value: T) = set(value)
-      }
-
-    override fun asSyncCollector(throwOnFailure: Boolean) =
-      object : FlowCollector<T> {
-        override suspend fun emit(value: T) {
-          if (!setAndCommit(value) && throwOnFailure) {
-            throw ValueNotPersistedException("Value [$value] failed to be written to persistent storage.")
-          }
+  fun asSyncCollector(throwOnFailure: Boolean = false) =
+    object : FlowCollector<T> {
+      override suspend fun emit(value: T) {
+        if (!setAndCommit(value) && throwOnFailure) {
+          throw ValueNotPersistedException("Value [$value] failed to be written to persistent storage.")
         }
       }
-  }
-
-  class ValueNotPersistedException(message: String) : RuntimeException(message)
+    }
 }

@@ -10,7 +10,7 @@ class LongPreference(
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val defaultValue: Long
-) : Preference.Base<Long>(keyFlow, sharedPreferences, key) {
+) : Preference<Long>(keyFlow, sharedPreferences, key) {
 
   override fun get() = sharedPreferences.getLong(key, defaultValue)
 

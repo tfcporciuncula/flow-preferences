@@ -10,7 +10,7 @@ class BooleanPreference(
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val defaultValue: Boolean
-) : Preference.Base<Boolean>(keyFlow, sharedPreferences, key) {
+) : Preference<Boolean>(keyFlow, sharedPreferences, key) {
 
   override fun get() = sharedPreferences.getBoolean(key, defaultValue)
 

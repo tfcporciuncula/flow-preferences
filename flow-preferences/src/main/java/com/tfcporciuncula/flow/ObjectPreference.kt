@@ -11,7 +11,7 @@ class ObjectPreference<T>(
   private val key: String,
   private val serializer: Serializer<T>,
   private val defaultValue: T
-) : Preference.Base<T>(keyFlow, sharedPreferences, key) {
+) : Preference<T>(keyFlow, sharedPreferences, key) {
 
   interface Serializer<T> {
 
