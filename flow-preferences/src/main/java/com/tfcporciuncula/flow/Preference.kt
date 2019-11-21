@@ -46,7 +46,7 @@ abstract class Preference<T>(
     object : FlowCollector<T> {
       override suspend fun emit(value: T) {
         if (!setAndCommit(value) && throwOnFailure) {
-          throw ValueNotPersistedException("Value [$value] failed to be written to persistent storage.")
+          throw ValueNotPersistedException("Value [$value] for key [$key] failed to be written to persistent storage.")
         }
       }
     }
