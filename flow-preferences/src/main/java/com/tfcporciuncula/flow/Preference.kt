@@ -3,7 +3,6 @@ package com.tfcporciuncula.flow
 import android.content.SharedPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
 
@@ -35,7 +34,7 @@ abstract class Preference<T>(
       .filter { it == key }
       .onStart { emit("first load trigger") }
       .map { get() }
-      .buffer(Channel.CONFLATED)
+      .conflate()
 
   fun asCollector() =
     object : FlowCollector<T> {
