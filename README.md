@@ -1,4 +1,4 @@
-[![Build Status](https://app.bitrise.io/app/83cbb59f8537b54e/status.svg?token=71wk-H1uKmybn_KB1Q7Gmw)](https://app.bitrise.io/app/83cbb59f8537b54e)
+[![Build Status](https://github.com/tfcporciuncula/flow-preferences/workflows/CI/badge.svg)](https://github.com/tfcporciuncula/flow-preferences/actions?query=workflow%3ACI)
 [![Release](https://jitpack.io/v/tfcporciuncula/flow-preferences.svg)](https://jitpack.io/#tfcporciuncula/flow-preferences)
 
 # Flow Preferences
