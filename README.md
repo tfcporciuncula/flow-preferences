@@ -43,9 +43,8 @@ val myPref = flowSharedPreferences.getInt("key", defaultValue = 10)
 Go with the Flow:
 
 ```kotlin
-scope.launch {
-  myPref.asFlow().collect { print(it) }
-}
+myPref.asFlow().onEach { print(it) }.launchIn(scope)
+
 ```
 
 ## Extras
