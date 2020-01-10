@@ -11,7 +11,7 @@ android {
 
     multiDexEnabled true
 
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
   }
 }
 

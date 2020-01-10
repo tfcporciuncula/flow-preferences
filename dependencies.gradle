@@ -26,24 +26,24 @@ ext.versions = [
 ext.deps = [
     'kotlin'  : [
         'stdlib'    : [
-            'jdk7': "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+            'jdk7': "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
         ],
         'coroutines': [
-            'core'   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
-            'android': "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}",
-            'test'   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}"
+            'core'   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines",
+            'android': "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
+            'test'   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines"
         ]
     ],
     'androidx': [
-        'coreKtx'         : "androidx.core:core-ktx:${versions.androidx.coreKtx}",
-        'lifecycleKtx'    : "androidx.lifecycle:lifecycle-runtime-ktx:${versions.androidx.lifecycle}",
-        'preferenceKtx'   : "androidx.preference:preference-ktx:${versions.androidx.preferenceKtx}",
-        'constraintLayout': "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintLayout}",
+        'coreKtx'         : "androidx.core:core-ktx:$versions.androidx.coreKtx",
+        'lifecycleKtx'    : "androidx.lifecycle:lifecycle-runtime-ktx:$versions.androidx.lifecycle",
+        'preferenceKtx'   : "androidx.preference:preference-ktx:$versions.androidx.preferenceKtx",
+        'constraintLayout': "androidx.constraintlayout:constraintlayout:$versions.androidx.constraintLayout",
         'test'            : [
-            'core'    : "androidx.test:core:${versions.androidx.test.core}",
-            'junit'   : "androidx.test.ext:junit:${versions.androidx.test.junit}",
-            'espresso': "androidx.test.espresso:espresso-core:${versions.androidx.test.espresso}",
+            'core'    : "androidx.test:core:$versions.androidx.test.core",
+            'junit'   : "androidx.test.ext:junit:$versions.androidx.test.junit",
+            'espresso': "androidx.test.espresso:espresso-core:$versions.androidx.test.espresso",
         ],
     ],
-    'truth'   : "com.google.truth:truth:${versions.truth}"
+    'truth'   : "com.google.truth:truth:$versions.truth"
 ]
