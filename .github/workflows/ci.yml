@@ -1,6 +1,10 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 
 jobs:
   build:
@@ -17,6 +21,9 @@ jobs:
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+
+      - name: Ktlint
+        run: ./gradlew lintKotlin
 
       - name: Instrumentation Tests
         uses: ReactiveCircus/android-emulator-runner@v2
