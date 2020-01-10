@@ -1,5 +1,6 @@
-[![Build Status](https://github.com/tfcporciuncula/flow-preferences/workflows/CI/badge.svg)](https://github.com/tfcporciuncula/flow-preferences/actions?query=workflow%3ACI)
 [![Release](https://jitpack.io/v/tfcporciuncula/flow-preferences.svg)](https://jitpack.io/#tfcporciuncula/flow-preferences)
+[![Build Status](https://github.com/tfcporciuncula/flow-preferences/workflows/CI/badge.svg)](https://github.com/tfcporciuncula/flow-preferences/actions?query=workflow%3ACI)
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
 # Flow Preferences
 
