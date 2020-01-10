@@ -5,11 +5,13 @@ buildscript {
     mavenCentral()
     google()
     jcenter()
+    maven { url 'https://plugins.gradle.org/m2/' }
   }
 
   dependencies {
     classpath "com.android.tools.build:gradle:$versions.agp"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+    classpath "org.jmailen.gradle:kotlinter-gradle:$versions.kotlinter"
   }
 }
 
@@ -18,6 +20,14 @@ allprojects {
     mavenCentral()
     google()
     jcenter()
+  }
+
+  apply plugin: 'org.jmailen.kotlinter'
+
+  kotlinter {
+    indentSize = 2
+    experimentalRules = true
+    disabledRules = ["import-ordering"]
   }
 }
 
