@@ -10,13 +10,13 @@ class BooleanPreference(
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val defaultValue: Boolean,
-  private val context: CoroutineContext
-) : Preference<Boolean>(keyFlow, sharedPreferences, key, context) {
+  private val coroutineContext: CoroutineContext
+) : Preference<Boolean>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   override fun get() = sharedPreferences.getBoolean(key, defaultValue)
 
   override fun set(value: Boolean) = sharedPreferences.edit().putBoolean(key, value).apply()
 
   override suspend fun setAndCommit(value: Boolean) =
-    withContext(context) { sharedPreferences.edit().putBoolean(key, value).commit() }
+    withContext(coroutineContext) { sharedPreferences.edit().putBoolean(key, value).commit() }
 }

@@ -10,13 +10,13 @@ class LongPreference(
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val defaultValue: Long,
-  private val context: CoroutineContext
-) : Preference<Long>(keyFlow, sharedPreferences, key, context) {
+  private val coroutineContext: CoroutineContext
+) : Preference<Long>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   override fun get() = sharedPreferences.getLong(key, defaultValue)
 
   override fun set(value: Long) = sharedPreferences.edit().putLong(key, value).apply()
 
   override suspend fun setAndCommit(value: Long) =
-    withContext(context) { sharedPreferences.edit().putLong(key, value).commit() }
+    withContext(coroutineContext) { sharedPreferences.edit().putLong(key, value).commit() }
 }

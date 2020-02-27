@@ -15,7 +15,7 @@ abstract class Preference<T>(
   private val keyFlow: Flow<String>,
   private val sharedPreferences: SharedPreferences,
   private val key: String,
-  private val context: CoroutineContext
+  private val coroutineContext: CoroutineContext
 ) {
 
   private class ValueNotPersistedException(message: String) : RuntimeException(message)
@@ -33,7 +33,7 @@ abstract class Preference<T>(
   fun delete() = sharedPreferences.edit().remove(key).apply()
 
   suspend fun deleteAndCommit() =
-    withContext(context) { sharedPreferences.edit().remove(key).commit() }
+    withContext(coroutineContext) { sharedPreferences.edit().remove(key).commit() }
 
   @ExperimentalCoroutinesApi fun asFlow() =
     keyFlow

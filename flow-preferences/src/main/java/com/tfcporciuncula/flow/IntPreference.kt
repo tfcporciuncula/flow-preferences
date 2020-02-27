@@ -10,13 +10,13 @@ class IntPreference(
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val defaultValue: Int,
-  private val context: CoroutineContext
-) : Preference<Int>(keyFlow, sharedPreferences, key, context) {
+  private val coroutineContext: CoroutineContext
+) : Preference<Int>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   override fun get() = sharedPreferences.getInt(key, defaultValue)
 
   override fun set(value: Int) = sharedPreferences.edit().putInt(key, value).apply()
 
   override suspend fun setAndCommit(value: Int) =
-    withContext(context) { sharedPreferences.edit().putInt(key, value).commit() }
+    withContext(coroutineContext) { sharedPreferences.edit().putInt(key, value).commit() }
 }

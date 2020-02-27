@@ -10,13 +10,13 @@ class StringPreference(
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val defaultValue: String,
-  private val context: CoroutineContext
-) : Preference<String>(keyFlow, sharedPreferences, key, context) {
+  private val coroutineContext: CoroutineContext
+) : Preference<String>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   override fun get() = sharedPreferences.getString(key, defaultValue)!!
 
   override fun set(value: String) = sharedPreferences.edit().putString(key, value).apply()
 
   override suspend fun setAndCommit(value: String) =
-    withContext(context) { sharedPreferences.edit().putString(key, value).commit() }
+    withContext(coroutineContext) { sharedPreferences.edit().putString(key, value).commit() }
 }

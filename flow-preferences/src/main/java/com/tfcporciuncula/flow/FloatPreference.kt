@@ -10,13 +10,13 @@ class FloatPreference(
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val defaultValue: Float,
-  private val context: CoroutineContext
-) : Preference<Float>(keyFlow, sharedPreferences, key, context) {
+  private val coroutineContext: CoroutineContext
+) : Preference<Float>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   override fun get() = sharedPreferences.getFloat(key, defaultValue)
 
   override fun set(value: Float) = sharedPreferences.edit().putFloat(key, value).apply()
 
   override suspend fun setAndCommit(value: Float) =
-    withContext(context) { sharedPreferences.edit().putFloat(key, value).commit() }
+    withContext(coroutineContext) { sharedPreferences.edit().putFloat(key, value).commit() }
 }

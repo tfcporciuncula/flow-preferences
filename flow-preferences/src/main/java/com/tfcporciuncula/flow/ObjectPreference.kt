@@ -11,8 +11,8 @@ class ObjectPreference<T>(
   private val key: String,
   private val serializer: Serializer<T>,
   private val defaultValue: T,
-  private val context: CoroutineContext
-) : Preference<T>(keyFlow, sharedPreferences, key, context) {
+  private val coroutineContext: CoroutineContext
+) : Preference<T>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   interface Serializer<T> {
 
@@ -28,5 +28,5 @@ class ObjectPreference<T>(
     sharedPreferences.edit().putString(key, serializer.serialize(value)).apply()
 
   override suspend fun setAndCommit(value: T) =
-    withContext(context) { sharedPreferences.edit().putString(key, serializer.serialize(value)).commit() }
+    withContext(coroutineContext) { sharedPreferences.edit().putString(key, serializer.serialize(value)).commit() }
 }

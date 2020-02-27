@@ -12,13 +12,13 @@ class EnumPreference<T : Enum<T>>(
   private val key: String,
   private val enumClass: Class<T>,
   private val defaultValue: T,
-  private val context: CoroutineContext
-) : Preference<T>(keyFlow, sharedPreferences, key, context) {
+  private val coroutineContext: CoroutineContext
+) : Preference<T>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   override fun get(): T = sharedPreferences.getString(key, null)?.let { valueOf(enumClass, it) } ?: defaultValue
 
   override fun set(value: T) = sharedPreferences.edit().putString(key, value.name).apply()
 
   override suspend fun setAndCommit(value: T) =
-    withContext(context) { sharedPreferences.edit().putString(key, value.name).commit() }
+    withContext(coroutineContext) { sharedPreferences.edit().putString(key, value.name).commit() }
 }
