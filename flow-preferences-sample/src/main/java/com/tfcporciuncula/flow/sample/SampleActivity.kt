@@ -6,7 +6,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
 import com.tfcporciuncula.flow.FlowSharedPreferences
-import kotlinx.android.synthetic.main.activity_sample.*
+import com.tfcporciuncula.flow.sample.databinding.SampleActivityBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
@@ -15,38 +15,40 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
-class SampleActivity : AppCompatActivity(R.layout.activity_sample) {
+class SampleActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    val binding = SampleActivityBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
     val flowSharedPreferences = FlowSharedPreferences(sharedPreferences)
 
-    setupStringExample(flowSharedPreferences)
-    setupIntCollectorExample(flowSharedPreferences)
+    setupStringExample(binding, flowSharedPreferences)
+    setupIntCollectorExample(binding, flowSharedPreferences)
   }
 
-  private fun setupStringExample(flowSharedPreferences: FlowSharedPreferences) {
+  private fun setupStringExample(binding: SampleActivityBinding, flowSharedPreferences: FlowSharedPreferences) {
     val stringPreference = flowSharedPreferences.getString("stringPref", defaultValue = "[empty]")
 
-    inputEditText.doOnTextChanged { text, _, _, _ ->
+    binding.inputEditText.doOnTextChanged { text, _, _, _ ->
       text?.let { stringPreference.set(it.toString()) }
     }
 
     lifecycleScope.launch {
-      stringPreference.asFlow().collect { outputTextView.text = it }
+      stringPreference.asFlow().collect { binding.outputTextView.text = it }
     }
   }
 
-  private fun setupIntCollectorExample(flowSharedPreferences: FlowSharedPreferences) {
+  private fun setupIntCollectorExample(binding: SampleActivityBinding, flowSharedPreferences: FlowSharedPreferences) {
     val intPreference = flowSharedPreferences.getInt("intPref")
 
     lifecycleScope.launchWhenStarted {
       intPreference.asCollector().emitAll(getSecondsElapsedFlow())
     }
     lifecycleScope.launch {
-      intPreference.asFlow().collect { secondsInForegroundTextView.text = it.toString() }
+      intPreference.asFlow().collect { binding.secondsInForegroundTextView.text = it.toString() }
     }
   }
 
