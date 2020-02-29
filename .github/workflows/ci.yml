@@ -24,6 +24,9 @@ jobs:
 
       - name: Ktlint
         run: ./gradlew lintKotlin
+        
+      - name: Detekt
+        run: ./gradlew detekt
 
       - name: Instrumentation Tests
         uses: ReactiveCircus/android-emulator-runner@v2
