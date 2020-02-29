@@ -11,7 +11,7 @@ class NullableStringSetPreference(
   private val key: String,
   private val defaultValue: Set<String?>,
   private val coroutineContext: CoroutineContext
-) : Preference<Set<String?>>(keyFlow, sharedPreferences, key, coroutineContext) {
+) : BasePreference<Set<String?>>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   override fun get(): Set<String?> = sharedPreferences.getStringSet(key, defaultValue)!!
 

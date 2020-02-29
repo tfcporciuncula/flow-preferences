@@ -11,7 +11,7 @@ class StringPreference(
   private val key: String,
   private val defaultValue: String,
   private val coroutineContext: CoroutineContext
-) : Preference<String>(keyFlow, sharedPreferences, key, coroutineContext) {
+) : BasePreference<String>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   override fun get() = sharedPreferences.getString(key, defaultValue)!!
 

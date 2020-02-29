@@ -11,7 +11,7 @@ class FloatPreference(
   private val key: String,
   private val defaultValue: Float,
   private val coroutineContext: CoroutineContext
-) : Preference<Float>(keyFlow, sharedPreferences, key, coroutineContext) {
+) : BasePreference<Float>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   override fun get() = sharedPreferences.getFloat(key, defaultValue)
 

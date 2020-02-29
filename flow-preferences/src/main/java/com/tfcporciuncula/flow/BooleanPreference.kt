@@ -11,7 +11,7 @@ class BooleanPreference(
   private val key: String,
   private val defaultValue: Boolean,
   private val coroutineContext: CoroutineContext
-) : Preference<Boolean>(keyFlow, sharedPreferences, key, coroutineContext) {
+) : BasePreference<Boolean>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   override fun get() = sharedPreferences.getBoolean(key, defaultValue)
 

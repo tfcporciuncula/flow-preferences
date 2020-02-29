@@ -11,7 +11,7 @@ class LongPreference(
   private val key: String,
   private val defaultValue: Long,
   private val coroutineContext: CoroutineContext
-) : Preference<Long>(keyFlow, sharedPreferences, key, coroutineContext) {
+) : BasePreference<Long>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   override fun get() = sharedPreferences.getLong(key, defaultValue)
 

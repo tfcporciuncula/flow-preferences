@@ -11,7 +11,7 @@ class IntPreference(
   private val key: String,
   private val defaultValue: Int,
   private val coroutineContext: CoroutineContext
-) : Preference<Int>(keyFlow, sharedPreferences, key, coroutineContext) {
+) : BasePreference<Int>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   override fun get() = sharedPreferences.getInt(key, defaultValue)
 
