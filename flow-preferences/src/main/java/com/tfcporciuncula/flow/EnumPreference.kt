@@ -1,23 +1,24 @@
 package com.tfcporciuncula.flow
 
 import android.content.SharedPreferences
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import java.lang.Enum.valueOf
+import kotlin.coroutines.CoroutineContext
 
 class EnumPreference<T : Enum<T>>(
   keyFlow: Flow<String>,
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val enumClass: Class<T>,
-  private val defaultValue: T
-) : Preference<T>(keyFlow, sharedPreferences, key) {
+  private val defaultValue: T,
+  private val coroutineContext: CoroutineContext
+) : Preference<T>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   override fun get(): T = sharedPreferences.getString(key, null)?.let { valueOf(enumClass, it) } ?: defaultValue
 
   override fun set(value: T) = sharedPreferences.edit().putString(key, value.name).apply()
 
   override suspend fun setAndCommit(value: T) =
-    withContext(Dispatchers.IO) { sharedPreferences.edit().putString(key, value.name).commit() }
+    withContext(coroutineContext) { sharedPreferences.edit().putString(key, value.name).commit() }
 }

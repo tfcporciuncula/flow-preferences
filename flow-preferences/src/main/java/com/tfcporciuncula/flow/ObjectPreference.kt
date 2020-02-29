@@ -1,17 +1,18 @@
 package com.tfcporciuncula.flow
 
 import android.content.SharedPreferences
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
+import kotlin.coroutines.CoroutineContext
 
 class ObjectPreference<T>(
   keyFlow: Flow<String>,
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val serializer: Serializer<T>,
-  private val defaultValue: T
-) : Preference<T>(keyFlow, sharedPreferences, key) {
+  private val defaultValue: T,
+  private val coroutineContext: CoroutineContext
+) : Preference<T>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   interface Serializer<T> {
 
@@ -27,5 +28,5 @@ class ObjectPreference<T>(
     sharedPreferences.edit().putString(key, serializer.serialize(value)).apply()
 
   override suspend fun setAndCommit(value: T) =
-    withContext(Dispatchers.IO) { sharedPreferences.edit().putString(key, serializer.serialize(value)).commit() }
+    withContext(coroutineContext) { sharedPreferences.edit().putString(key, serializer.serialize(value)).commit() }
 }
