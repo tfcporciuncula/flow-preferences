@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.github.tfcporciuncula:flow-preferences:1.0.0'
+  implementation 'com.github.tfcporciuncula:flow-preferences:1.1.0'
 }
 ```
 
@@ -54,7 +54,7 @@ myPref.asFlow().onEach { print(it) }.launchIn(scope)
 
 Preferences expose the regular `get()` and `put()` (named as `set()`) functions from `SharedPreferences`. 
 But in addition to that, they also expose the `suspend` `setAndCommit()` function that puts the value and performs a
-commit in case you must ensure the preference is persisted right away.
+commit in case you must ensure the preference is persisted right away. There's also a `deleteAndCommit()`.
 
 ### Collector support
 
