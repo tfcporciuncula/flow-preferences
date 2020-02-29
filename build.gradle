@@ -3,6 +3,7 @@ buildscript {
     mavenCentral()
     google()
     jcenter()
+    maven { url 'https://plugins.gradle.org/m2/' }
   }
 
   apply from: rootProject.file('dependencies.gradle')
@@ -10,12 +11,9 @@ buildscript {
   dependencies {
     classpath "com.android.tools.build:gradle:$versions.agp"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+    classpath "org.jmailen.gradle:kotlinter-gradle:$versions.kotlinter"
+    classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$versions.detekt"
   }
-}
-
-plugins {
-  id 'org.jmailen.kotlinter' version '2.3.1' apply false
-  id 'io.gitlab.arturbosch.detekt' version '1.6.0' apply false
 }
 
 ext.buildConfig = [
