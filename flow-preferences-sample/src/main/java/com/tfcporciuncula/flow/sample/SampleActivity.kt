@@ -14,6 +14,8 @@ import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
+private const val ONE_SECOND_DELAY = 1000L
+
 @ExperimentalCoroutinesApi
 class SampleActivity : AppCompatActivity() {
 
@@ -57,7 +59,7 @@ class SampleActivity : AppCompatActivity() {
       var i = 0
       while (true) {
         emit(++i)
-        delay(1000)
+        delay(ONE_SECOND_DELAY)
       }
     }
 }

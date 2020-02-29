@@ -1,34 +1,39 @@
 buildscript {
-  apply from: rootProject.file('versions&dependencies.gradle')
-
   repositories {
     mavenCentral()
     google()
     jcenter()
-    maven { url 'https://plugins.gradle.org/m2/' }
   }
+
+  apply from: rootProject.file('dependencies.gradle')
 
   dependencies {
     classpath "com.android.tools.build:gradle:$versions.agp"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-    classpath "org.jmailen.gradle:kotlinter-gradle:$versions.kotlinter"
   }
 }
 
-allprojects {
+plugins {
+  id 'org.jmailen.kotlinter' version '2.3.1' apply false
+  id 'io.gitlab.arturbosch.detekt' version '1.6.0' apply false
+}
+
+ext.buildConfig = [
+    'minSdk'    : 14,
+    'compileSdk': 29,
+    'targetSdk' : 29,
+    'buildTools': '29.0.3'
+]
+
+subprojects {
   repositories {
     mavenCentral()
     google()
     jcenter()
   }
 
-  apply plugin: 'org.jmailen.kotlinter'
-
-  kotlinter {
-    indentSize = 2
-    experimentalRules = true
-    disabledRules = ["import-ordering"]
-  }
+  apply from: rootProject.file('ktlint.gradle')
+  apply from: rootProject.file('detekt.gradle')
 }
 
 task clean(type: Delete) {
