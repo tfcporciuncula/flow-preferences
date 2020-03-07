@@ -29,7 +29,8 @@ abstract class BasePreference<T>(
   override suspend fun deleteAndCommit() =
     withContext(coroutineContext) { sharedPreferences.edit().remove(key).commit() }
 
-  @ExperimentalCoroutinesApi override fun asFlow() =
+  @ExperimentalCoroutinesApi
+  override fun asFlow() =
     keyFlow
       .filter { it == key }
       .onStart { emit("first load trigger") }
