@@ -1,13 +1,13 @@
 ext.versions = [
-    'agp'       : '3.6.1',
-    'detekt'    : '1.7.0',
-    'kotlin'    : '1.3.71',
+    'agp'       : '3.6.3',
+    'detekt'    : '1.8.0',
+    'kotlin'    : '1.3.72',
     'kotlinter' : '2.3.2',
     'coroutines': '1.3.5',
     'androidx'  : [
         'coreKtx'         : '1.2.0',
         'lifecycle'       : '2.2.0',
-        'preferenceKtx'   : '1.1.0',
+        'preferenceKtx'   : '1.1.1',
         'constraintLayout': '2.0.0-beta4',
         'test'            : [
             'core'    : '1.2.0',
