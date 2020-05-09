@@ -25,8 +25,7 @@ ext.deps = [
         ],
         'coroutines': [
             'core'   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines",
-            'android': "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
-            'test'   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines"
+            'android': "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
         ]
     ],
     'androidx': [
