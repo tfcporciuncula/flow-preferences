@@ -19,8 +19,6 @@ dependencies {
   implementation project(':flow-preferences')
 
   androidTestImplementation deps.kotlin.stdlib.jdk7
-  androidTestImplementation deps.kotlin.coroutines.core
-  androidTestImplementation deps.kotlin.coroutines.test
 
   androidTestImplementation deps.androidx.test.core
   androidTestImplementation deps.androidx.test.junit
