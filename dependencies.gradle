@@ -3,12 +3,12 @@ ext.versions = [
     'detekt'    : '1.8.0',
     'kotlin'    : '1.3.72',
     'kotlinter' : '2.3.2',
-    'coroutines': '1.3.5',
+    'coroutines': '1.3.6',
     'androidx'  : [
         'coreKtx'         : '1.2.0',
         'lifecycle'       : '2.2.0',
         'preferenceKtx'   : '1.1.1',
-        'constraintLayout': '2.0.0-beta4',
+        'constraintLayout': '2.0.0-beta5',
         'test'            : [
             'core'    : '1.2.0',
             'junit'   : '1.1.1',
