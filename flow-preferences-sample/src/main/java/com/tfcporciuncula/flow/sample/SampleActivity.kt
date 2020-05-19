@@ -9,10 +9,10 @@ import com.tfcporciuncula.flow.FlowSharedPreferences
 import com.tfcporciuncula.flow.sample.databinding.SampleActivityBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 private const val ONE_SECOND_DELAY = 1000L
 
@@ -38,9 +38,7 @@ class SampleActivity : AppCompatActivity() {
       text?.let { stringPreference.set(it.toString()) }
     }
 
-    lifecycleScope.launch {
-      stringPreference.asFlow().collect { binding.outputTextView.text = it }
-    }
+    stringPreference.asFlow().onEach { binding.outputTextView.text = it }.launchIn(lifecycleScope)
   }
 
   private fun setupIntCollectorExample(binding: SampleActivityBinding, flowSharedPreferences: FlowSharedPreferences) {
@@ -49,9 +47,7 @@ class SampleActivity : AppCompatActivity() {
     lifecycleScope.launchWhenStarted {
       intPreference.asCollector().emitAll(getSecondsElapsedFlow())
     }
-    lifecycleScope.launch {
-      intPreference.asFlow().collect { binding.secondsInForegroundTextView.text = it.toString() }
-    }
+    intPreference.asFlow().onEach { binding.secondsInForegroundTextView.text = it.toString() }.launchIn(lifecycleScope)
   }
 
   private fun getSecondsElapsedFlow() =
