@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 abstract class BasePreference<T>(
-  private val keyFlow: Flow<String>,
+  private val keyFlow: Flow<String?>,
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val coroutineContext: CoroutineContext
@@ -32,7 +32,7 @@ abstract class BasePreference<T>(
   @ExperimentalCoroutinesApi
   override fun asFlow() =
     keyFlow
-      .filter { it == key }
+      .filter { it == key || it == null } // null means preferences were cleared (Android R+ exclusive behavior)
       .onStart { emit("first load trigger") }
       .map { get() }
       .conflate()

@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlin.coroutines.CoroutineContext
 
@@ -13,7 +14,7 @@ class FlowSharedPreferences @JvmOverloads constructor(
   val coroutineContext: CoroutineContext = Dispatchers.IO
 ) {
 
-  val keyFlow = callbackFlow {
+  val keyFlow: Flow<String?> = callbackFlow {
     val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key -> offer(key) }
     sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
     awaitClose { sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener) }

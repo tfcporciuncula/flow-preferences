@@ -6,7 +6,7 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 class IntPreference(
-  keyFlow: Flow<String>,
+  keyFlow: Flow<String?>,
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val defaultValue: Int,

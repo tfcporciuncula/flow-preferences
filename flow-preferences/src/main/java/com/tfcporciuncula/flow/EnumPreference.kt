@@ -7,7 +7,7 @@ import java.lang.Enum.valueOf
 import kotlin.coroutines.CoroutineContext
 
 class EnumPreference<T : Enum<T>>(
-  keyFlow: Flow<String>,
+  keyFlow: Flow<String?>,
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val enumClass: Class<T>,
