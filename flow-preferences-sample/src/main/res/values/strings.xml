@@ -1,6 +1,7 @@
 <resources>
   <string name="app_name">Flow Preferences Sample</string>
   <string name="seconds_in_foreground_label">Seconds in foreground:</string>
+  <string name="clear">Clear</string>
   <string name="input_hint">Input</string>
   <string name="output_label">Observed value:</string>
 </resources>

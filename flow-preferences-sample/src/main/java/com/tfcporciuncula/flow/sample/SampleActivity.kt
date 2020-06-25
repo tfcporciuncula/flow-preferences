@@ -27,6 +27,8 @@ class SampleActivity : AppCompatActivity() {
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
     val flowSharedPreferences = FlowSharedPreferences(sharedPreferences)
 
+    binding.clearButton.setOnClickListener { flowSharedPreferences.clear() }
+
     setupStringExample(binding, flowSharedPreferences)
     setupIntCollectorExample(binding, flowSharedPreferences)
   }
