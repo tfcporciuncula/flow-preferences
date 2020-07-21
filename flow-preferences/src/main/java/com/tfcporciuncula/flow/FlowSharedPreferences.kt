@@ -43,6 +43,10 @@ class FlowSharedPreferences @JvmOverloads constructor(
     StringPreference(keyFlow, sharedPreferences, key, defaultValue, coroutineContext)
 
   @JvmOverloads
+  fun getNullableString(key: String, defaultValue: String? = null): Preference<String?> =
+    NullableStringPreference(keyFlow, sharedPreferences, key, defaultValue, coroutineContext)
+
+  @JvmOverloads
   fun getStringSet(key: String, defaultValue: Set<String> = emptySet()): Preference<Set<String>> =
     StringSetPreference(keyFlow, sharedPreferences, key, defaultValue, coroutineContext)
 
