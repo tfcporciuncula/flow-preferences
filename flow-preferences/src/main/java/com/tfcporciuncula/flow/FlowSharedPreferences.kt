@@ -54,8 +54,15 @@ class FlowSharedPreferences @JvmOverloads constructor(
   fun getNullableStringSet(key: String, defaultValue: Set<String?> = emptySet()): Preference<Set<String?>> =
     NullableStringSetPreference(keyFlow, sharedPreferences, key, defaultValue, coroutineContext)
 
-  fun <T : Any> getObject(key: String, serializer: ObjectPreference.Serializer<T>, defaultValue: T): Preference<T> =
+  fun <T : Any> getObject(
+    key: String, serializer: ObjectPreference.Serializer<T>, defaultValue: T
+  ): Preference<T> =
     ObjectPreference(keyFlow, sharedPreferences, key, serializer, defaultValue, coroutineContext)
+
+  fun <T> getNullableObject(
+    key: String, serializer: NullableObjectPreference.Serializer<T>, defaultValue: T
+  ): Preference<T> =
+    NullableObjectPreference(keyFlow, sharedPreferences, key, serializer, defaultValue, coroutineContext)
 
   inline fun <reified T : Enum<T>> getEnum(key: String, defaultValue: T): Preference<T> =
     EnumPreference(keyFlow, sharedPreferences, key, T::class.java, defaultValue, coroutineContext)
