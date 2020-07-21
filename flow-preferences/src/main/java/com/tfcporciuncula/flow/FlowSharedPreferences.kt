@@ -70,6 +70,7 @@ class FlowSharedPreferences @JvmOverloads constructor(
   ): Preference<T> =
     ObjectPreference(keyFlow, sharedPreferences, key, serializer, defaultValue, coroutineContext)
 
+  @JvmOverloads
   fun <T> getNullableObject(
     key: String,
     serializer: NullableObjectPreference.Serializer<T>,
