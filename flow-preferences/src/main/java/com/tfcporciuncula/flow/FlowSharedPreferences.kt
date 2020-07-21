@@ -8,13 +8,15 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlin.coroutines.CoroutineContext
 
+internal typealias KeyFlow = Flow<String?>
+
 @ExperimentalCoroutinesApi
 class FlowSharedPreferences @JvmOverloads constructor(
   val sharedPreferences: SharedPreferences,
   val coroutineContext: CoroutineContext = Dispatchers.IO
 ) {
 
-  val keyFlow: Flow<String?> = callbackFlow {
+  val keyFlow: KeyFlow = callbackFlow {
     val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key -> offer(key) }
     sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
     awaitClose { sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener) }

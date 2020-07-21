@@ -1,13 +1,12 @@
 package com.tfcporciuncula.flow
 
 import android.content.SharedPreferences
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import java.lang.Enum.valueOf
 import kotlin.coroutines.CoroutineContext
 
 class EnumPreference<T : Enum<T>>(
-  keyFlow: Flow<String?>,
+  keyFlow: KeyFlow,
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val enumClass: Class<T>,

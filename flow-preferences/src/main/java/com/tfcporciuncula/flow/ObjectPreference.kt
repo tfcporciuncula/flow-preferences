@@ -1,12 +1,11 @@
 package com.tfcporciuncula.flow
 
 import android.content.SharedPreferences
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 class ObjectPreference<T>(
-  keyFlow: Flow<String?>,
+  keyFlow: KeyFlow,
   private val sharedPreferences: SharedPreferences,
   private val key: String,
   private val serializer: Serializer<T>,
