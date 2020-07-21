@@ -62,6 +62,7 @@ class FlowSharedPreferences @JvmOverloads constructor(
   fun getNullableStringSetOfNullables(key: String, defaultValue: Set<String?>? = null): Preference<Set<String?>?> =
     NullableStringSetOfNullablesPreference(keyFlow, sharedPreferences, key, defaultValue, coroutineContext)
 
+  @JvmOverloads
   fun <T : Any> getObject(
     key: String,
     serializer: ObjectPreference.Serializer<T>,
