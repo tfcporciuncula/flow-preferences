@@ -9,8 +9,8 @@ import org.junit.Test
 class StringSetPreferenceTest : BaseTest() {
 
   @Test fun testDefaultValues() {
-    val preference1 = flowSharedPreferences.getStringSet("key", defaultValue = setOf("a, b"))
-    assertThat(preference1.get()).isEqualTo(setOf("a, b"))
+    val preference1 = flowSharedPreferences.getStringSet("key", defaultValue = setOf("a", "b"))
+    assertThat(preference1.get()).isEqualTo(setOf("a", "b"))
 
     val preference2 = flowSharedPreferences.getStringSet("key", defaultValue = setOf("x", "y", "a"))
     assertThat(preference2.get()).isEqualTo(setOf("x", "y", "a"))

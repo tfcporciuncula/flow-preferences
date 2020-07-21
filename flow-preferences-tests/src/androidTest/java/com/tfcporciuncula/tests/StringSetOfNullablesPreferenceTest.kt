@@ -9,8 +9,8 @@ import org.junit.Test
 class StringSetOfNullablesPreferenceTest : BaseTest() {
 
   @Test fun testDefaultValues() {
-    val preference1 = flowSharedPreferences.getStringSetOfNullables("key", defaultValue = setOf("a, b"))
-    assertThat(preference1.get()).isEqualTo(setOf("a, b"))
+    val preference1 = flowSharedPreferences.getStringSetOfNullables("key", defaultValue = setOf("a", "b"))
+    assertThat(preference1.get()).isEqualTo(setOf("a", "b"))
 
     val preference2 = flowSharedPreferences.getStringSetOfNullables("key", defaultValue = setOf("x", null, "a"))
     assertThat(preference2.get()).isEqualTo(setOf("x", null, "a"))
