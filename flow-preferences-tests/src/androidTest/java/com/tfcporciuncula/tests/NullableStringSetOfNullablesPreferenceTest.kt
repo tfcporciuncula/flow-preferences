@@ -6,21 +6,24 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class NullableStringSetPreferenceTest : BaseTest() {
+class NullableStringSetOfNullablesPreferenceTest : BaseTest() {
 
   @Test fun testDefaultValues() {
-    val preference1 = flowSharedPreferences.getNullableStringSet("key", defaultValue = setOf("a", "b"))
+    val preference1 = flowSharedPreferences.getNullableStringSetOfNullables("key", defaultValue = setOf("a", "b"))
     assertThat(preference1.get()).isEqualTo(setOf("a", "b"))
 
-    val preference2 = flowSharedPreferences.getNullableStringSet("key", defaultValue = null)
-    assertThat(preference2.get()).isNull()
+    val preference2 = flowSharedPreferences.getNullableStringSetOfNullables("key", defaultValue = setOf("x", null, "a"))
+    assertThat(preference2.get()).isEqualTo(setOf("x", null, "a"))
+
+    val preference3 = flowSharedPreferences.getNullableStringSetOfNullables("key", defaultValue = null)
+    assertThat(preference3.get()).isNull()
   }
 
   @Test fun testSettingValues() {
-    val preference = flowSharedPreferences.getNullableStringSet("key")
+    val preference = flowSharedPreferences.getNullableStringSetOfNullables("key")
 
-    preference.set(setOf("bla", "bla"))
-    assertThat(preference.get()).isEqualTo(setOf("bla"))
+    preference.set(setOf("bla", null, "bla"))
+    assertThat(preference.get()).isEqualTo(setOf("bla", null))
 
     runBlocking {
       preference.setAndCommit(emptySet())
@@ -29,7 +32,7 @@ class NullableStringSetPreferenceTest : BaseTest() {
   }
 
   @Test fun testSettingNullValues() {
-    val preference = flowSharedPreferences.getNullableStringSet("key", defaultValue = emptySet())
+    val preference = flowSharedPreferences.getNullableStringSetOfNullables("key", defaultValue = emptySet())
 
     preference.set(null)
     assertThat(preference.get()).isEqualTo(emptySet<String>())

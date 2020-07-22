@@ -8,13 +8,15 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlin.coroutines.CoroutineContext
 
+internal typealias KeyFlow = Flow<String?>
+
 @ExperimentalCoroutinesApi
 class FlowSharedPreferences @JvmOverloads constructor(
   val sharedPreferences: SharedPreferences,
   val coroutineContext: CoroutineContext = Dispatchers.IO
 ) {
 
-  val keyFlow: Flow<String?> = callbackFlow {
+  val keyFlow: KeyFlow = callbackFlow {
     val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key -> offer(key) }
     sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
     awaitClose { sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener) }
@@ -41,15 +43,40 @@ class FlowSharedPreferences @JvmOverloads constructor(
     StringPreference(keyFlow, sharedPreferences, key, defaultValue, coroutineContext)
 
   @JvmOverloads
+  fun getNullableString(key: String, defaultValue: String? = null): Preference<String?> =
+    NullableStringPreference(keyFlow, sharedPreferences, key, defaultValue, coroutineContext)
+
+  @JvmOverloads
   fun getStringSet(key: String, defaultValue: Set<String> = emptySet()): Preference<Set<String>> =
     StringSetPreference(keyFlow, sharedPreferences, key, defaultValue, coroutineContext)
 
   @JvmOverloads
-  fun getNullableStringSet(key: String, defaultValue: Set<String?> = emptySet()): Preference<Set<String?>> =
+  fun getNullableStringSet(key: String, defaultValue: Set<String>? = null): Preference<Set<String>?> =
     NullableStringSetPreference(keyFlow, sharedPreferences, key, defaultValue, coroutineContext)
 
-  fun <T> getObject(key: String, serializer: ObjectPreference.Serializer<T>, defaultValue: T): Preference<T> =
+  @JvmOverloads
+  fun getStringSetOfNullables(key: String, defaultValue: Set<String?> = emptySet()): Preference<Set<String?>> =
+    StringSetOfNullablesPreference(keyFlow, sharedPreferences, key, defaultValue, coroutineContext)
+
+  @JvmOverloads
+  fun getNullableStringSetOfNullables(key: String, defaultValue: Set<String?>? = null): Preference<Set<String?>?> =
+    NullableStringSetOfNullablesPreference(keyFlow, sharedPreferences, key, defaultValue, coroutineContext)
+
+  @JvmOverloads
+  fun <T : Any> getObject(
+    key: String,
+    serializer: ObjectPreference.Serializer<T>,
+    defaultValue: T
+  ): Preference<T> =
     ObjectPreference(keyFlow, sharedPreferences, key, serializer, defaultValue, coroutineContext)
+
+  @JvmOverloads
+  fun <T> getNullableObject(
+    key: String,
+    serializer: NullableObjectPreference.Serializer<T>,
+    defaultValue: T
+  ): Preference<T> =
+    NullableObjectPreference(keyFlow, sharedPreferences, key, serializer, defaultValue, coroutineContext)
 
   inline fun <reified T : Enum<T>> getEnum(key: String, defaultValue: T): Preference<T> =
     EnumPreference(keyFlow, sharedPreferences, key, T::class.java, defaultValue, coroutineContext)

@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
-class ObjectPreference<T : Any>(
+class NullableObjectPreference<T>(
   keyFlow: KeyFlow,
   private val sharedPreferences: SharedPreferences,
   private val key: String,
@@ -13,11 +13,11 @@ class ObjectPreference<T : Any>(
   private val coroutineContext: CoroutineContext
 ) : BasePreference<T>(keyFlow, sharedPreferences, key, coroutineContext) {
 
-  interface Serializer<T : Any> {
+  interface Serializer<T> {
 
-    fun deserialize(serialized: String): T
+    fun deserialize(serialized: String?): T
 
-    fun serialize(value: T): String
+    fun serialize(value: T): String?
   }
 
   override fun get() =
