@@ -1,4 +1,4 @@
-package com.tfcporciuncula.tests
+package com.tfcporciuncula.flow.tests
 
 import androidx.preference.PreferenceManager
 import androidx.test.ext.junit.runners.AndroidJUnit4

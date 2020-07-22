@@ -1,4 +1,4 @@
-package com.tfcporciuncula.tests
+package com.tfcporciuncula.flow.tests
 
 import com.google.common.truth.Truth.assertThat
 import com.tfcporciuncula.flow.Serializer
