@@ -74,7 +74,8 @@ You can use `asSyncCollector()` if you want to put **and commit** the value (lik
 
 ### Enum support
 
-Enum classes work out of the box and are persisted as strings based on their `name` value:
+Enum classes work out of the box and are persisted as strings based on their `name` value (so make sure you `@Keep` them 
+if you're using R8):
 
 ```kotlin
 enum class MyEnum { A, B, C }
