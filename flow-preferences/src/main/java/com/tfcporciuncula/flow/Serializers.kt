@@ -6,6 +6,6 @@ interface Serializer<T : Any> {
 }
 
 interface NullableSerializer<T> {
-  fun deserialize(serialized: String?): T
-  fun serialize(value: T): String?
+  fun deserialize(serialized: String?): T?
+  fun serialize(value: T?): String?
 }

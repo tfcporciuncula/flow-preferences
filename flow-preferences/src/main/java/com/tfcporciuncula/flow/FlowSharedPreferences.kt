@@ -72,8 +72,8 @@ class FlowSharedPreferences @JvmOverloads constructor(
   fun <T> getNullableObject(
     key: String,
     serializer: NullableSerializer<T>,
-    defaultValue: T
-  ): Preference<T> =
+    defaultValue: T?
+  ): Preference<T?> =
     NullableObjectPreference(keyFlow, sharedPreferences, key, serializer, defaultValue, coroutineContext)
 
   inline fun <reified T : Enum<T>> getEnum(key: String, defaultValue: T): Preference<T> {
@@ -82,6 +82,14 @@ class FlowSharedPreferences @JvmOverloads constructor(
       override fun serialize(value: T) = value.name
     }
     return getObject(key, serializer, defaultValue)
+  }
+
+  inline fun <reified T : Enum<T>> getNullableEnum(key: String, defaultValue: T?): Preference<T?> {
+    val serializer = object : NullableSerializer<T> {
+      override fun deserialize(serialized: String?) = serialized?.let { enumValueOf<T>(serialized) }
+      override fun serialize(value: T?) = value?.name
+    }
+    return getNullableObject(key, serializer, defaultValue)
   }
 
   fun clear() = sharedPreferences.edit().clear().apply()
