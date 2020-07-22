@@ -1,7 +1,7 @@
 package com.tfcporciuncula.tests
 
 import com.google.common.truth.Truth.assertThat
-import com.tfcporciuncula.flow.ObjectPreference
+import com.tfcporciuncula.flow.Serializer
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
@@ -12,7 +12,7 @@ class ObjectPreferenceTest : BaseTest() {
   private class TestObject(val id: Int)
 
   private val serializer =
-    object : ObjectPreference.Serializer<TestObject> {
+    object : Serializer<TestObject> {
       override fun deserialize(serialized: String) = TestObject(serialized.toInt())
       override fun serialize(value: TestObject) = value.id.toString()
     }

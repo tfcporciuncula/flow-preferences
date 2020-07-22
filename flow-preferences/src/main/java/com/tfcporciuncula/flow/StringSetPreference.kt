@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
-class StringSetPreference(
+internal class StringSetPreference(
   keyFlow: KeyFlow,
   private val sharedPreferences: SharedPreferences,
   private val key: String,

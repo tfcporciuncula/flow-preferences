@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
-abstract class BasePreference<T>(
+internal abstract class BasePreference<T>(
   private val keyFlow: KeyFlow,
   private val sharedPreferences: SharedPreferences,
   private val key: String,

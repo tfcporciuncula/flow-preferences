@@ -16,7 +16,7 @@ class FlowSharedPreferences @JvmOverloads constructor(
   val coroutineContext: CoroutineContext = Dispatchers.IO
 ) {
 
-  val keyFlow: KeyFlow = callbackFlow {
+  internal val keyFlow: KeyFlow = callbackFlow {
     val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key -> offer(key) }
     sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
     awaitClose { sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener) }
@@ -64,20 +64,25 @@ class FlowSharedPreferences @JvmOverloads constructor(
 
   fun <T : Any> getObject(
     key: String,
-    serializer: ObjectPreference.Serializer<T>,
+    serializer: Serializer<T>,
     defaultValue: T
   ): Preference<T> =
     ObjectPreference(keyFlow, sharedPreferences, key, serializer, defaultValue, coroutineContext)
 
   fun <T> getNullableObject(
     key: String,
-    serializer: NullableObjectPreference.Serializer<T>,
+    serializer: NullableSerializer<T>,
     defaultValue: T
   ): Preference<T> =
     NullableObjectPreference(keyFlow, sharedPreferences, key, serializer, defaultValue, coroutineContext)
 
-  inline fun <reified T : Enum<T>> getEnum(key: String, defaultValue: T): Preference<T> =
-    EnumPreference(keyFlow, sharedPreferences, key, T::class.java, defaultValue, coroutineContext)
+  inline fun <reified T : Enum<T>> getEnum(key: String, defaultValue: T): Preference<T> {
+    val serializer = object : Serializer<T> {
+      override fun deserialize(serialized: String) = enumValueOf<T>(serialized)
+      override fun serialize(value: T) = value.name
+    }
+    return getObject(key, serializer, defaultValue)
+  }
 
   fun clear() = sharedPreferences.edit().clear().apply()
 }

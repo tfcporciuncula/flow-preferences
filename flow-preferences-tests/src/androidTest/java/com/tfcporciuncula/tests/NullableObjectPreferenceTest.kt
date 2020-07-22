@@ -1,7 +1,7 @@
 package com.tfcporciuncula.tests
 
 import com.google.common.truth.Truth.assertThat
-import com.tfcporciuncula.flow.NullableObjectPreference
+import com.tfcporciuncula.flow.NullableSerializer
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
@@ -12,7 +12,7 @@ class NullableObjectPreferenceTest : BaseTest() {
   private class TestObject(val id: Int)
 
   private val serializer =
-    object : NullableObjectPreference.Serializer<TestObject?> {
+    object : NullableSerializer<TestObject?> {
       override fun deserialize(serialized: String?) = serialized?.let { TestObject(it.toInt()) }
       override fun serialize(value: TestObject?) = value?.id?.toString()
     }
