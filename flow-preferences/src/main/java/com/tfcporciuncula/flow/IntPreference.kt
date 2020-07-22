@@ -16,6 +16,7 @@ class IntPreference(
 
   override fun set(value: Int) = sharedPreferences.edit().putInt(key, value).apply()
 
-  override suspend fun setAndCommit(value: Int) =
-    withContext(coroutineContext) { sharedPreferences.edit().putInt(key, value).commit() }
+  override suspend fun setAndCommit(value: Int) = withContext(coroutineContext) {
+    sharedPreferences.edit().putInt(key, value).commit()
+  }
 }

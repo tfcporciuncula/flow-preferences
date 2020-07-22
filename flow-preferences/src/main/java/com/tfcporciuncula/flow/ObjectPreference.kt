@@ -14,9 +14,7 @@ class ObjectPreference<T : Any>(
 ) : BasePreference<T>(keyFlow, sharedPreferences, key, coroutineContext) {
 
   interface Serializer<T : Any> {
-
     fun deserialize(serialized: String): T
-
     fun serialize(value: T): String
   }
 
@@ -26,6 +24,7 @@ class ObjectPreference<T : Any>(
   override fun set(value: T) =
     sharedPreferences.edit().putString(key, serializer.serialize(value)).apply()
 
-  override suspend fun setAndCommit(value: T) =
-    withContext(coroutineContext) { sharedPreferences.edit().putString(key, serializer.serialize(value)).commit() }
+  override suspend fun setAndCommit(value: T) = withContext(coroutineContext) {
+    sharedPreferences.edit().putString(key, serializer.serialize(value)).commit()
+  }
 }

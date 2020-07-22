@@ -18,6 +18,7 @@ class EnumPreference<T : Enum<T>>(
 
   override fun set(value: T) = sharedPreferences.edit().putString(key, value.name).apply()
 
-  override suspend fun setAndCommit(value: T) =
-    withContext(coroutineContext) { sharedPreferences.edit().putString(key, value.name).commit() }
+  override suspend fun setAndCommit(value: T) = withContext(coroutineContext) {
+    sharedPreferences.edit().putString(key, value.name).commit()
+  }
 }

@@ -16,6 +16,7 @@ class LongPreference(
 
   override fun set(value: Long) = sharedPreferences.edit().putLong(key, value).apply()
 
-  override suspend fun setAndCommit(value: Long) =
-    withContext(coroutineContext) { sharedPreferences.edit().putLong(key, value).commit() }
+  override suspend fun setAndCommit(value: Long) = withContext(coroutineContext) {
+    sharedPreferences.edit().putLong(key, value).commit()
+  }
 }

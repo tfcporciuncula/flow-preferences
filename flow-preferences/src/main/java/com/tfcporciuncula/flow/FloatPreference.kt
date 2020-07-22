@@ -16,6 +16,7 @@ class FloatPreference(
 
   override fun set(value: Float) = sharedPreferences.edit().putFloat(key, value).apply()
 
-  override suspend fun setAndCommit(value: Float) =
-    withContext(coroutineContext) { sharedPreferences.edit().putFloat(key, value).commit() }
+  override suspend fun setAndCommit(value: Float) = withContext(coroutineContext) {
+    sharedPreferences.edit().putFloat(key, value).commit()
+  }
 }

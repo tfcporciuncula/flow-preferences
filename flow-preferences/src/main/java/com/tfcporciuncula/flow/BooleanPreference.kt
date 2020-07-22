@@ -16,6 +16,7 @@ class BooleanPreference(
 
   override fun set(value: Boolean) = sharedPreferences.edit().putBoolean(key, value).apply()
 
-  override suspend fun setAndCommit(value: Boolean) =
-    withContext(coroutineContext) { sharedPreferences.edit().putBoolean(key, value).commit() }
+  override suspend fun setAndCommit(value: Boolean) = withContext(coroutineContext) {
+    sharedPreferences.edit().putBoolean(key, value).commit()
+  }
 }

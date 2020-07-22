@@ -16,6 +16,7 @@ class NullableStringSetOfNullablesPreference(
 
   override fun set(value: Set<String?>?) = sharedPreferences.edit().putStringSet(key, value).apply()
 
-  override suspend fun setAndCommit(value: Set<String?>?) =
-    withContext(coroutineContext) { sharedPreferences.edit().putStringSet(key, value).commit() }
+  override suspend fun setAndCommit(value: Set<String?>?) = withContext(coroutineContext) {
+    sharedPreferences.edit().putStringSet(key, value).commit()
+  }
 }
