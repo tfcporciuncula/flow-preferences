@@ -101,8 +101,8 @@ val myPref = flowSharedPreferences.getObject("key", serializer, defaultValue = T
 
 ### Explicit nullability support
 
-By default, strings and objects (and string sets) can never be `null`, so consumers don't ever have to worry about 
-null checks. If you want to support nullable values, you can explicitly opt in by asking for the 
+By default, strings, objects, enums and sets can never be `null`, so consumers don't ever have to worry about 
+`null` checks. If you want to support nullable values, you can explicitly opt in by asking for the 
 nullable-friendly preference types:
 
 ```kotlin
