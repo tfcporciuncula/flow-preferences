@@ -5,12 +5,12 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 internal class LongPreference(
+  override val key: String,
+  override val defaultValue: Long,
   keyFlow: KeyFlow,
   private val sharedPreferences: SharedPreferences,
-  private val key: String,
-  private val defaultValue: Long,
   private val coroutineContext: CoroutineContext
-) : BasePreference<Long>(keyFlow, sharedPreferences, key, coroutineContext) {
+) : BasePreference<Long>(key, keyFlow, sharedPreferences, coroutineContext) {
 
   override fun get() = sharedPreferences.getLong(key, defaultValue)
 

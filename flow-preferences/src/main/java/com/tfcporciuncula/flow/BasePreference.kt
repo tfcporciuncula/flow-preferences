@@ -11,9 +11,9 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 internal abstract class BasePreference<T>(
+  override val key: String,
   private val keyFlow: KeyFlow,
   private val sharedPreferences: SharedPreferences,
-  private val key: String,
   private val coroutineContext: CoroutineContext
 ) : Preference<T> {
 

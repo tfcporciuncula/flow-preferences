@@ -5,12 +5,12 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 internal class FloatPreference(
+  override val key: String,
+  override val defaultValue: Float,
   keyFlow: KeyFlow,
   private val sharedPreferences: SharedPreferences,
-  private val key: String,
-  private val defaultValue: Float,
   private val coroutineContext: CoroutineContext
-) : BasePreference<Float>(keyFlow, sharedPreferences, key, coroutineContext) {
+) : BasePreference<Float>(key, keyFlow, sharedPreferences, coroutineContext) {
 
   override fun get() = sharedPreferences.getFloat(key, defaultValue)
 

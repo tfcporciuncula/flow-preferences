@@ -5,12 +5,12 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 internal class BooleanPreference(
+  override val key: String,
+  override val defaultValue: Boolean,
   keyFlow: KeyFlow,
   private val sharedPreferences: SharedPreferences,
-  private val key: String,
-  private val defaultValue: Boolean,
   private val coroutineContext: CoroutineContext
-) : BasePreference<Boolean>(keyFlow, sharedPreferences, key, coroutineContext) {
+) : BasePreference<Boolean>(key, keyFlow, sharedPreferences, coroutineContext) {
 
   override fun get() = sharedPreferences.getBoolean(key, defaultValue)
 

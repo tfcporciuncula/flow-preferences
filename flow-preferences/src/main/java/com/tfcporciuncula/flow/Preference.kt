@@ -5,6 +5,10 @@ import kotlinx.coroutines.flow.FlowCollector
 
 interface Preference<T> {
 
+  val key: String
+
+  val defaultValue: T
+
   fun get(): T
 
   fun set(value: T)

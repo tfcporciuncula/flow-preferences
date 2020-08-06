@@ -5,12 +5,12 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 internal class IntPreference(
+  override val key: String,
+  override val defaultValue: Int,
   keyFlow: KeyFlow,
   private val sharedPreferences: SharedPreferences,
-  private val key: String,
-  private val defaultValue: Int,
   private val coroutineContext: CoroutineContext
-) : BasePreference<Int>(keyFlow, sharedPreferences, key, coroutineContext) {
+) : BasePreference<Int>(key, keyFlow, sharedPreferences, coroutineContext) {
 
   override fun get() = sharedPreferences.getInt(key, defaultValue)
 

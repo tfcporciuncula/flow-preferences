@@ -5,12 +5,12 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 internal class NullableStringPreference(
+  override val key: String,
+  override val defaultValue: String?,
   keyFlow: KeyFlow,
   private val sharedPreferences: SharedPreferences,
-  private val key: String,
-  private val defaultValue: String?,
   private val coroutineContext: CoroutineContext
-) : BasePreference<String?>(keyFlow, sharedPreferences, key, coroutineContext) {
+) : BasePreference<String?>(key, keyFlow, sharedPreferences, coroutineContext) {
 
   override fun get() = sharedPreferences.getString(key, defaultValue)
 

@@ -5,12 +5,12 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 internal class NullableStringSetOfNullablesPreference(
+  override val key: String,
+  override val defaultValue: Set<String?>?,
   keyFlow: KeyFlow,
   private val sharedPreferences: SharedPreferences,
-  private val key: String,
-  private val defaultValue: Set<String?>?,
   private val coroutineContext: CoroutineContext
-) : BasePreference<Set<String?>?>(keyFlow, sharedPreferences, key, coroutineContext) {
+) : BasePreference<Set<String?>?>(key, keyFlow, sharedPreferences, coroutineContext) {
 
   override fun get(): Set<String?>? = sharedPreferences.getStringSet(key, defaultValue)
 
