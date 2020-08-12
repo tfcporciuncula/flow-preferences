@@ -20,15 +20,15 @@ android {
     jvmTarget = JavaVersion.VERSION_1_8
   }
 
-  viewBinding {
-    enabled = true
+  buildFeatures {
+    viewBinding = true
   }
 }
 
 dependencies {
   implementation project(':flow-preferences')
 
-  implementation deps.kotlin.stdlib.jdk7
+  implementation deps.kotlin.stdlib
   implementation deps.kotlin.coroutines.core
   implementation deps.kotlin.coroutines.android
 

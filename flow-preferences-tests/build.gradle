@@ -16,14 +16,12 @@ android {
 }
 
 dependencies {
-  implementation project(':flow-preferences')
+  androidTestImplementation project(':flow-preferences')
 
-  androidTestImplementation deps.kotlin.stdlib.jdk7
-
-  androidTestImplementation deps.androidx.test.core
-  androidTestImplementation deps.androidx.test.junit
+  androidTestImplementation deps.kotlin.stdlib
+  androidTestImplementation deps.androidx.test.coreKtx
   androidTestImplementation deps.androidx.test.espresso
+  androidTestImplementation deps.androidx.test.junitKtx
   androidTestImplementation deps.androidx.preferenceKtx
-
   androidTestImplementation deps.truth
 }
