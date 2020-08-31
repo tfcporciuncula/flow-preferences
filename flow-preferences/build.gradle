@@ -11,5 +11,5 @@ android {
 }
 
 dependencies {
-  api deps.kotlin.coroutines.core
+  api deps.coroutines.core
 }

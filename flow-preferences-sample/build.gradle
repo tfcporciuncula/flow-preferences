@@ -28,9 +28,8 @@ android {
 dependencies {
   implementation project(':flow-preferences')
 
-  implementation deps.kotlin.stdlib
-  implementation deps.kotlin.coroutines.core
-  implementation deps.kotlin.coroutines.android
+  implementation deps.coroutines.core
+  implementation deps.coroutines.android
 
   implementation deps.androidx.coreKtx
   implementation deps.androidx.lifecycleKtx

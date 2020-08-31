@@ -19,14 +19,11 @@ ext.versions = [
 ]
 
 ext.deps = [
-    'kotlin'  : [
-        'stdlib'    : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin",
-        'coroutines': [
-            'core'   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines",
-            'android': "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
-        ]
+    'coroutines': [
+        'core'   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines",
+        'android': "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
     ],
-    'androidx': [
+    'androidx'  : [
         'coreKtx'         : "androidx.core:core-ktx:$versions.androidx.coreKtx",
         'lifecycleKtx'    : "androidx.lifecycle:lifecycle-runtime-ktx:$versions.androidx.lifecycle",
         'preferenceKtx'   : "androidx.preference:preference-ktx:$versions.androidx.preferenceKtx",
@@ -37,5 +34,5 @@ ext.deps = [
             'junitKtx': "androidx.test.ext:junit-ktx:$versions.androidx.test.junitKtx",
         ],
     ],
-    'truth'   : "com.google.truth:truth:$versions.truth",
+    'truth'     : "com.google.truth:truth:$versions.truth",
 ]
