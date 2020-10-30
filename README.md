@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.github.tfcporciuncula.flow-preferences:flow-preferences:1.3.2'
+  implementation 'com.github.tfcporciuncula.flow-preferences:flow-preferences:1.3.3'
 }
 ```
 
