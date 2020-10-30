@@ -1,7 +1,6 @@
 package com.tfcporciuncula.flow
 
 import android.content.SharedPreferences
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.flow.filter
@@ -28,7 +27,6 @@ internal abstract class BasePreference<T>(
   override suspend fun deleteAndCommit() =
     withContext(coroutineContext) { sharedPreferences.edit().remove(key).commit() }
 
-  @ExperimentalCoroutinesApi
   override fun asFlow() =
     keyFlow
       .filter { it == key || it == null } // null means preferences were cleared (Android R+ exclusive behavior)
