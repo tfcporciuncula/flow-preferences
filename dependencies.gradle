@@ -14,9 +14,9 @@ ext.versions = [
     ],
     'coroutines'        : '1.4.2',
     'dependencyAnalysis': '0.71.0',
-    'detekt'            : '1.14.2',
+    'detekt'            : '1.15.0',
     'kotlin'            : '1.4.30',
-    'kotlinter'         : '3.2.0',
+    'kotlinter'         : '3.3.0',
     'truth'             : '1.1.2',
 ]
 
