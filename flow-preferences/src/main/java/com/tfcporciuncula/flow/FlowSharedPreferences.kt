@@ -3,6 +3,7 @@ package com.tfcporciuncula.flow
 import android.content.SharedPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -17,9 +18,14 @@ class FlowSharedPreferences @JvmOverloads constructor(
 ) {
 
   internal val keyFlow: KeyFlow = callbackFlow {
-    val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key -> offer(key) }
+    val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key -> offerCatching(key) }
     sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
     awaitClose { sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener) }
+  }
+
+  // https://github.com/Kotlin/kotlinx.coroutines/issues/974
+  private fun <E> SendChannel<E>.offerCatching(element: E): Boolean {
+    return runCatching { offer(element) }.getOrDefault(false)
   }
 
   @JvmOverloads
