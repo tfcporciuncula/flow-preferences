@@ -6,7 +6,7 @@ android {
   buildToolsVersion buildConfig.buildTools
 
   defaultConfig {
-    minSdkVersion buildConfig.minSdk
+    minSdkVersion 26
     targetSdkVersion buildConfig.targetSdk
 
     multiDexEnabled true
