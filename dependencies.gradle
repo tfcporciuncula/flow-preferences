@@ -1,6 +1,7 @@
 ext.versions = [
-    'agp'       : '4.1.0',
-    'androidx'  : [
+    'agp'               : '4.1.0',
+    'androidx'          : [
+        'appCompat'       : '1.2.0',
         'coreKtx'         : '1.3.2',
         'lifecycle'       : '2.3.0',
         'preferenceKtx'   : '1.1.1',
@@ -11,11 +12,12 @@ ext.versions = [
             'junitKtx': '1.1.2',
         ],
     ],
-    'coroutines': '1.4.2',
-    'detekt'    : '1.14.2',
-    'kotlin'    : '1.4.30',
-    'kotlinter' : '3.2.0',
-    'truth'     : '1.1.2',
+    'coroutines'        : '1.4.2',
+    'dependencyAnalysis': '0.71.0',
+    'detekt'            : '1.14.2',
+    'kotlin'            : '1.4.30',
+    'kotlinter'         : '3.2.0',
+    'truth'             : '1.1.2',
 ]
 
 ext.deps = [
@@ -25,6 +27,7 @@ ext.deps = [
     ],
     'androidx'  : [
         'coreKtx'         : "androidx.core:core-ktx:$versions.androidx.coreKtx",
+        'appCompat'       : "androidx.appcompat:appcompat:$versions.androidx.appCompat",
         'lifecycleKtx'    : "androidx.lifecycle:lifecycle-runtime-ktx:$versions.androidx.lifecycle",
         'preferenceKtx'   : "androidx.preference:preference-ktx:$versions.androidx.preferenceKtx",
         'constraintLayout': "androidx.constraintlayout:constraintlayout:$versions.androidx.constraintLayout",

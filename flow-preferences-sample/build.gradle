@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 
 android {
   compileSdkVersion buildConfig.compileSdk
@@ -31,6 +30,7 @@ dependencies {
   implementation deps.coroutines.core
   implementation deps.coroutines.android
 
+  implementation deps.androidx.appCompat
   implementation deps.androidx.coreKtx
   implementation deps.androidx.lifecycleKtx
   implementation deps.androidx.preferenceKtx
