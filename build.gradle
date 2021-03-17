@@ -13,11 +13,8 @@ buildscript {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
     classpath "org.jmailen.gradle:kotlinter-gradle:$versions.kotlinter"
     classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$versions.detekt"
-    classpath "com.autonomousapps:dependency-analysis-gradle-plugin:$versions.dependencyAnalysis"
   }
 }
-
-apply plugin: "com.autonomousapps.dependency-analysis"
 
 ext.buildConfig = [
     'minSdk'    : 14,
