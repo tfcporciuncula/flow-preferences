@@ -3,3 +3,6 @@ include ':flow-preferences-tests'
 include ':flow-preferences-sample'
 
 rootProject.name = 'flow-preferences-root'
+
+enableFeaturePreview("VERSION_CATALOGS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

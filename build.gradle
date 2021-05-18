@@ -5,13 +5,11 @@ buildscript {
     maven { url 'https://plugins.gradle.org/m2/' }
   }
 
-  apply from: rootProject.file('dependencies.gradle')
-
   dependencies {
-    classpath "com.android.tools.build:gradle:$versions.agp"
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-    classpath "org.jmailen.gradle:kotlinter-gradle:$versions.kotlinter"
-    classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$versions.detekt"
+    classpath libs.gradle.agp
+    classpath libs.gradle.kotlin
+    classpath libs.gradle.kotlinter
+    classpath libs.gradle.detekt
   }
 }
 

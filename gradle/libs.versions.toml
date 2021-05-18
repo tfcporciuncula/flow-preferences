@@ -1,0 +1,32 @@
+[versions]
+agp = '4.2.1'
+androidx-appCompat = '1.2.0'
+androidx-coreKtx = '1.3.2'
+androidx-lifecycle = '2.3.1'
+androidx-preference = '1.1.1'
+androidx-constraintLayout = '2.0.4'
+androidx-test-coreKtx = '1.3.0'
+androidx-test-espresso = '3.3.0'
+androidx-test-junitKtx = '1.1.2'
+coroutines = '1.5.0'
+detekt = '1.17.0'
+kotlin = '1.5.0'
+kotlinter = '3.4.4'
+truth = '1.1.2'
+
+[libraries]
+androidx-coreKtx = { group = 'androidx.core', name = 'core-ktx', version.ref = 'androidx-coreKtx' }
+androidx-appCompat = { group = 'androidx.appcompat', name = 'appcompat', version.ref = 'androidx-appCompat' }
+androidx-lifecycleKtx = { group = 'androidx.lifecycle', name = 'lifecycle-runtime-ktx', version.ref = 'androidx-lifecycle' }
+androidx-preferenceKtx = { group = 'androidx.preference', name = 'preference-ktx', version.ref = 'androidx-preference' }
+androidx-constraintLayout = { group = 'androidx.constraintlayout', name = 'constraintlayout', version.ref = 'androidx-constraintLayout' }
+androidx-test-coreKtx = { group = 'androidx.test', name = 'core-ktx', version.ref = 'androidx-test-coreKtx' }
+androidx-test-espresso = { group = 'androidx.test.espresso', name = 'espresso-core', version.ref = 'androidx-test-espresso' }
+androidx-test-junitKtx = { group = 'androidx.test.ext', name = 'junit-ktx', version.ref = 'androidx-test-junitKtx' }
+coroutines-core = { group = 'org.jetbrains.kotlinx', name = 'kotlinx-coroutines-core', version.ref = 'coroutines' }
+coroutines-android = { group = 'org.jetbrains.kotlinx', name = 'kotlinx-coroutines-android', version.ref = 'coroutines' }
+gradle-agp = { group = 'com.android.tools.build', name = 'gradle', version.ref = 'agp' }
+gradle-kotlin = { group = 'org.jetbrains.kotlin', name = 'kotlin-gradle-plugin', version.ref = 'kotlin' }
+gradle-kotlinter = { group = 'org.jmailen.gradle', name = 'kotlinter-gradle', version.ref = 'kotlinter' }
+gradle-detekt = { group = 'io.gitlab.arturbosch.detekt', name = 'detekt-gradle-plugin', version.ref = 'detekt' }
+truth = { group = 'com.google.truth', name = 'truth', version.ref = 'truth' }

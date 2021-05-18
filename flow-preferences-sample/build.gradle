@@ -25,14 +25,14 @@ android {
 }
 
 dependencies {
-  implementation project(':flow-preferences')
+  implementation projects.flowPreferences
 
-  implementation deps.coroutines.core
-  implementation deps.coroutines.android
+  implementation libs.coroutines.core
+  implementation libs.coroutines.android
 
-  implementation deps.androidx.appCompat
-  implementation deps.androidx.coreKtx
-  implementation deps.androidx.lifecycleKtx
-  implementation deps.androidx.preferenceKtx
-  implementation deps.androidx.constraintLayout
+  implementation libs.androidx.appCompat
+  implementation libs.androidx.coreKtx
+  implementation libs.androidx.lifecycleKtx
+  implementation libs.androidx.preferenceKtx
+  implementation libs.androidx.constraintLayout
 }
