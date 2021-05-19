@@ -12,6 +12,7 @@ coroutines = '1.5.0'
 detekt = '1.17.0'
 kotlin = '1.5.0'
 kotlinter = '3.4.4'
+publish = '0.15.1'
 truth = '1.1.2'
 
 [libraries]
@@ -29,4 +30,5 @@ gradle-agp = { group = 'com.android.tools.build', name = 'gradle', version.ref =
 gradle-kotlin = { group = 'org.jetbrains.kotlin', name = 'kotlin-gradle-plugin', version.ref = 'kotlin' }
 gradle-kotlinter = { group = 'org.jmailen.gradle', name = 'kotlinter-gradle', version.ref = 'kotlinter' }
 gradle-detekt = { group = 'io.gitlab.arturbosch.detekt', name = 'detekt-gradle-plugin', version.ref = 'detekt' }
+gradle-publish = { group = 'com.vanniktech', name = 'gradle-maven-publish-plugin', version.ref = 'publish' }
 truth = { group = 'com.google.truth', name = 'truth', version.ref = 'truth' }
