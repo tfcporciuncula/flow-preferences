@@ -6,7 +6,7 @@ android {
   buildToolsVersion buildConfig.buildTools
 
   defaultConfig {
-    applicationId 'com.tfcporciuncula.flow.sample'
+    applicationId 'com.fredporciuncula.flow.preferences.sample'
     minSdkVersion buildConfig.minSdk
     targetSdkVersion buildConfig.targetSdk
     versionCode 1
