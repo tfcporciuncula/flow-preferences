@@ -27,6 +27,12 @@ subprojects {
     google()
   }
 
+  plugins.withId('com.vanniktech.maven.publish') {
+    mavenPublish {
+      sonatypeHost = 'S01'
+    }
+  }
+
   apply from: rootProject.file('ktlint.gradle')
   apply from: rootProject.file('detekt.gradle')
 }
