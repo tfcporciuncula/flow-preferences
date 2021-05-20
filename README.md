@@ -1,4 +1,4 @@
-[![Release](https://jitpack.io/v/tfcporciuncula/flow-preferences.svg)](https://jitpack.io/#tfcporciuncula/flow-preferences)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.fredporciuncula/flow-preferences/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.fredporciuncula/flow-preferences)
 [![Build Status](https://github.com/tfcporciuncula/flow-preferences/workflows/CI/badge.svg)](https://github.com/tfcporciuncula/flow-preferences/actions?query=workflow%3ACI)
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
@@ -13,7 +13,7 @@ we have [Coroutines](https://kotlinlang.org/docs/reference/coroutines/coroutines
 
 ```groovy
 repositories {
-  maven { url "https://jitpack.io" }
+  mavenCentral()
 }
 
 dependencies {
