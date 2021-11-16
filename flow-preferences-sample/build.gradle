@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 
 android {
   compileSdkVersion buildConfig.compileSdk
-  buildToolsVersion buildConfig.buildTools
 
   defaultConfig {
     applicationId 'com.fredporciuncula.flow.preferences.sample'
@@ -16,11 +15,11 @@ android {
   }
 
   kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_1_8
+    jvmTarget = JavaVersion.VERSION_11
   }
 
   buildFeatures {
-    viewBinding = true
+    viewBinding true
   }
 }
 
