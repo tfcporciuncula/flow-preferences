@@ -34,17 +34,11 @@ internal abstract class BasePreference<T>(
       .map { get() }
       .conflate()
 
-  override fun asCollector() =
-    object : FlowCollector<T> {
-      override suspend fun emit(value: T) = set(value)
-    }
+  override fun asCollector() = FlowCollector<T> { value -> set(value) }
 
-  override fun asSyncCollector(throwOnFailure: Boolean) =
-    object : FlowCollector<T> {
-      override suspend fun emit(value: T) {
-        if (!setAndCommit(value) && throwOnFailure) {
-          throw ValueNotPersistedException("Value [$value] for key [$key] failed to be written to persistent storage.")
-        }
-      }
+  override fun asSyncCollector(throwOnFailure: Boolean) = FlowCollector<T> { value ->
+    if (!setAndCommit(value) && throwOnFailure) {
+      throw ValueNotPersistedException("Value [$value] for key [$key] failed to be written to persistent storage.")
     }
+  }
 }

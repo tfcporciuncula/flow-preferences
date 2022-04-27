@@ -10,20 +10,15 @@ import org.junit.Test
 class MappedPreferenceTest : BaseTest() {
 
   @Test fun testDefaultValues() {
-    val preference1 = flowSharedPreferences.getString("key", defaultValue = "1000")
-      .map(String::toInt, Int::toString)
-
+    val preference1 = flowSharedPreferences.getString("key", defaultValue = "1000").map(String::toInt, Int::toString)
     assertThat(preference1.get()).isEqualTo(1000)
 
-    val preference2 = flowSharedPreferences.getInt("key", defaultValue = 5000)
-      .map(Int::toString, String::toInt)
-
+    val preference2 = flowSharedPreferences.getInt("key", defaultValue = 5000).map(Int::toString, String::toInt)
     assertThat(preference2.get()).isEqualTo("5000")
   }
 
   @Test fun testSettingValues() {
-    val preference = flowSharedPreferences.getString("key")
-      .map(String::toInt, Int::toString)
+    val preference = flowSharedPreferences.getString("key").map(String::toInt, Int::toString)
 
     preference.set(1000)
     assertThat(preference.get()).isEqualTo(1000)
