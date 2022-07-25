@@ -2,13 +2,11 @@ package com.fredporciuncula.flow.preferences
 
 import android.content.SharedPreferences
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlin.coroutines.CoroutineContext
 
 internal typealias KeyFlow = Flow<String?>
 
-@ExperimentalCoroutinesApi
 class FlowSharedPreferences @JvmOverloads constructor(
   val sharedPreferences: SharedPreferences,
   val coroutineContext: CoroutineContext = Dispatchers.IO
