@@ -1,10 +1,11 @@
 package com.fredporciuncula.flow.preferences.tests
 
 import com.google.common.truth.Truth.assertThat
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.emitAll
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
@@ -81,11 +82,26 @@ class PreferenceTest : BaseTest() {
   @Test fun testFlowConflatedBehavior() = runTest {
     val preference = flowSharedPreferences.getFloat("key", defaultValue = 0.5f)
 
+    val results = mutableListOf<Float>()
+    val deferred = CompletableDeferred<Unit>()
+
+    val job = launch(UnconfinedTestDispatcher()) {
+      preference.asFlow()
+        .distinctUntilChanged() // see: https://github.com/tfcporciuncula/flow-preferences/issues/15
+        .collect {
+          deferred.await()
+          results.add(it)
+        }
+    }
+
     preference.set(20f)
     preference.set(30f)
     preference.set(50f)
 
-    assertThat(preference.asFlow().first()).isEqualTo(50f)
+    deferred.complete(Unit)
+    job.cancel()
+
+    assertThat(results).isEqualTo(listOf(0.5f, 50f))
   }
 
   @Test fun testCollector() = runTest {
