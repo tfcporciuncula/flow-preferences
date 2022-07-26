@@ -17,6 +17,8 @@ android {
 dependencies {
   androidTestImplementation projects.flowPreferences
 
+  implementation libs.coroutines.test
+
   androidTestImplementation libs.androidx.test.coreKtx
   androidTestImplementation libs.androidx.test.espresso
   androidTestImplementation libs.androidx.test.junitKtx

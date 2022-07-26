@@ -2,7 +2,7 @@ package com.fredporciuncula.flow.preferences.tests
 
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
@@ -18,15 +18,13 @@ class EnumPreferenceTest : BaseTest() {
     assertThat(preference2.get()).isEqualTo(TestEnum.C)
   }
 
-  @Test fun testSettingValues() {
+  @Test fun testSettingValues() = runTest {
     val preference = flowSharedPreferences.getEnum("key", defaultValue = TestEnum.A)
 
     preference.set(TestEnum.B)
     assertThat(preference.get()).isEqualTo(TestEnum.B)
 
-    runBlocking {
-      preference.setAndCommit(TestEnum.C)
-      assertThat(preference.get()).isEqualTo(TestEnum.C)
-    }
+    preference.setAndCommit(TestEnum.C)
+    assertThat(preference.get()).isEqualTo(TestEnum.C)
   }
 }

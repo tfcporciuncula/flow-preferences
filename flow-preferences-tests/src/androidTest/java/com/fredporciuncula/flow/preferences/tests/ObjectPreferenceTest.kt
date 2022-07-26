@@ -3,7 +3,7 @@ package com.fredporciuncula.flow.preferences.tests
 import com.fredporciuncula.flow.preferences.Serializer
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
@@ -25,15 +25,13 @@ class ObjectPreferenceTest : BaseTest() {
     assertThat(preference2.get().id).isEqualTo(1)
   }
 
-  @Test fun testSettingValues() {
+  @Test fun testSettingValues() = runTest {
     val preference = flowSharedPreferences.getObject("key", serializer, defaultValue = TestObject(-1))
 
     preference.set(TestObject(100))
     assertThat(preference.get().id).isEqualTo(100)
 
-    runBlocking {
-      preference.setAndCommit(TestObject(2000))
-      assertThat(preference.get().id).isEqualTo(2000)
-    }
+    preference.setAndCommit(TestObject(2000))
+    assertThat(preference.get().id).isEqualTo(2000)
   }
 }

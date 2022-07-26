@@ -3,7 +3,7 @@ package com.fredporciuncula.flow.preferences.tests
 import com.fredporciuncula.flow.preferences.NullableSerializer
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
@@ -25,29 +25,25 @@ class NullableObjectPreferenceTest : BaseTest() {
     assertThat(preference2.get()).isNull()
   }
 
-  @Test fun testSettingValues() {
+  @Test fun testSettingValues() = runTest {
     val preference = flowSharedPreferences.getNullableObject("key", serializer, defaultValue = TestObject(-1))
 
     preference.set(TestObject(100))
     assertThat(preference.get()!!.id).isEqualTo(100)
 
-    runBlocking {
-      preference.setAndCommit(TestObject(2000))
-      assertThat(preference.get()!!.id).isEqualTo(2000)
-    }
+    preference.setAndCommit(TestObject(2000))
+    assertThat(preference.get()!!.id).isEqualTo(2000)
   }
 
-  @Test fun testSettingNullValues() {
+  @Test fun testSettingNullValues() = runTest {
     val preference = flowSharedPreferences.getNullableObject("key", serializer, defaultValue = TestObject(-1))
 
     preference.set(null)
     assertThat(preference.get()!!.id).isEqualTo(-1)
     assertThat(preference.isSet()).isFalse()
 
-    runBlocking {
-      preference.setAndCommit(null)
-      assertThat(preference.get()!!.id).isEqualTo(-1)
-      assertThat(preference.isSet()).isFalse()
-    }
+    preference.setAndCommit(null)
+    assertThat(preference.get()!!.id).isEqualTo(-1)
+    assertThat(preference.isSet()).isFalse()
   }
 }

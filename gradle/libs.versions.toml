@@ -26,6 +26,7 @@ androidx-test-espresso = { group = 'androidx.test.espresso', name = 'espresso-co
 androidx-test-junitKtx = { group = 'androidx.test.ext', name = 'junit-ktx', version.ref = 'androidx-test-junitKtx' }
 coroutines-core = { group = 'org.jetbrains.kotlinx', name = 'kotlinx-coroutines-core', version.ref = 'coroutines' }
 coroutines-android = { group = 'org.jetbrains.kotlinx', name = 'kotlinx-coroutines-android', version.ref = 'coroutines' }
+coroutines-test = { group = 'org.jetbrains.kotlinx', name = 'kotlinx-coroutines-test', version.ref = 'coroutines' }
 gradle-agp = { group = 'com.android.tools.build', name = 'gradle', version.ref = 'agp' }
 gradle-kotlin = { group = 'org.jetbrains.kotlin', name = 'kotlin-gradle-plugin', version.ref = 'kotlin' }
 gradle-kotlinter = { group = 'org.jmailen.gradle', name = 'kotlinter-gradle', version.ref = 'kotlinter' }

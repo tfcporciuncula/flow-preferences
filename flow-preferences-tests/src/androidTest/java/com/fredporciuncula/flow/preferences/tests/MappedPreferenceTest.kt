@@ -3,7 +3,7 @@ package com.fredporciuncula.flow.preferences.tests
 import com.fredporciuncula.flow.preferences.map
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
@@ -17,15 +17,13 @@ class MappedPreferenceTest : BaseTest() {
     assertThat(preference2.get()).isEqualTo("5000")
   }
 
-  @Test fun testSettingValues() {
+  @Test fun testSettingValues() = runTest {
     val preference = flowSharedPreferences.getString("key").map(String::toInt, Int::toString)
 
     preference.set(1000)
     assertThat(preference.get()).isEqualTo(1000)
 
-    runBlocking {
-      preference.setAndCommit(5000)
-      assertThat(preference.get()).isEqualTo(5000)
-    }
+    preference.setAndCommit(5000)
+    assertThat(preference.get()).isEqualTo(5000)
   }
 }

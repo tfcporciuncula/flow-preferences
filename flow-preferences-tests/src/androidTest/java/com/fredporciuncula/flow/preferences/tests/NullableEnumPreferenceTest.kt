@@ -2,7 +2,7 @@ package com.fredporciuncula.flow.preferences.tests
 
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
@@ -18,29 +18,25 @@ class NullableEnumPreferenceTest : BaseTest() {
     assertThat(preference2.get()).isNull()
   }
 
-  @Test fun testSettingValues() {
+  @Test fun testSettingValues() = runTest {
     val preference = flowSharedPreferences.getNullableEnum("key", defaultValue = TestEnum.A)
 
     preference.set(TestEnum.B)
     assertThat(preference.get()).isEqualTo(TestEnum.B)
 
-    runBlocking {
-      preference.setAndCommit(TestEnum.C)
-      assertThat(preference.get()).isEqualTo(TestEnum.C)
-    }
+    preference.setAndCommit(TestEnum.C)
+    assertThat(preference.get()).isEqualTo(TestEnum.C)
   }
 
-  @Test fun testSettingNullValues() {
+  @Test fun testSettingNullValues() = runTest {
     val preference = flowSharedPreferences.getNullableEnum("key", defaultValue = TestEnum.A)
 
     preference.set(null)
     assertThat(preference.get()).isEqualTo(TestEnum.A)
     assertThat(preference.isSet()).isFalse()
 
-    runBlocking {
-      preference.setAndCommit(null)
-      assertThat(preference.get()).isEqualTo(TestEnum.A)
-      assertThat(preference.isSet()).isFalse()
-    }
+    preference.setAndCommit(null)
+    assertThat(preference.get()).isEqualTo(TestEnum.A)
+    assertThat(preference.isSet()).isFalse()
   }
 }

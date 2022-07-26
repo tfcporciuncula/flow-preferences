@@ -2,7 +2,7 @@ package com.fredporciuncula.flow.preferences.tests
 
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
@@ -16,29 +16,25 @@ class NullableStringSetPreferenceTest : BaseTest() {
     assertThat(preference2.get()).isNull()
   }
 
-  @Test fun testSettingValues() {
+  @Test fun testSettingValues() = runTest {
     val preference = flowSharedPreferences.getNullableStringSet("key")
 
     preference.set(setOf("bla", "bla"))
     assertThat(preference.get()).isEqualTo(setOf("bla"))
 
-    runBlocking {
-      preference.setAndCommit(emptySet())
-      assertThat(preference.get()).isEqualTo(emptySet<String>())
-    }
+    preference.setAndCommit(emptySet())
+    assertThat(preference.get()).isEqualTo(emptySet<String>())
   }
 
-  @Test fun testSettingNullValues() {
+  @Test fun testSettingNullValues() = runTest {
     val preference = flowSharedPreferences.getNullableStringSet("key", defaultValue = emptySet())
 
     preference.set(null)
     assertThat(preference.get()).isEqualTo(emptySet<String>())
     assertThat(preference.isSet()).isFalse()
 
-    runBlocking {
-      preference.setAndCommit(null)
-      assertThat(preference.get()).isEqualTo(emptySet<String>())
-      assertThat(preference.isSet()).isFalse()
-    }
+    preference.setAndCommit(null)
+    assertThat(preference.get()).isEqualTo(emptySet<String>())
+    assertThat(preference.isSet()).isFalse()
   }
 }

@@ -2,7 +2,7 @@ package com.fredporciuncula.flow.preferences.tests
 
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
@@ -16,15 +16,13 @@ class FloatPreferenceTest : BaseTest() {
     assertThat(preference2.get()).isEqualTo(1.1f)
   }
 
-  @Test fun testSettingValues() {
+  @Test fun testSettingValues() = runTest {
     val preference = flowSharedPreferences.getFloat("key")
 
     preference.set(23f)
     assertThat(preference.get()).isEqualTo(23f)
 
-    runBlocking {
-      preference.setAndCommit(100f)
-      assertThat(preference.get()).isEqualTo(100f)
-    }
+    preference.setAndCommit(100f)
+    assertThat(preference.get()).isEqualTo(100f)
   }
 }
