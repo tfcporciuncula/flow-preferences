@@ -29,7 +29,7 @@ fun <T, R> Preference<T>.mapToEntries(entries: Map<T, R>): Preference<R> = map({
  * Return the preference parameter mapped to the values in the given pairs
  */
 fun <T, R> Preference<T>.mapToEntries(vararg entries: Pair<T, R>): Preference<R> =
-  mapToEntries(entries.associate { it })
+  mapToEntries(entries.toList().associate { it })
 
 internal class MappedPreference<T, R>(
   private val preference: Preference<T>,
