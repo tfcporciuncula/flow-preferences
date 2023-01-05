@@ -28,8 +28,10 @@ fun <T, R> Preference<T>.mapToEntries(entries: Map<T, R>): Preference<R> = map({
 /**
  * Return the preference parameter mapped to the values in the given pairs
  */
-fun <T, R> Preference<T>.mapToEntries(vararg entries: Pair<T, R>): Preference<R> =
-  mapToEntries(entries.toList().associate { it })
+fun <T, R> Preference<T>.mapToEntries(vararg entries: Pair<T, R>): Preference<R> {
+  require(entries.isNotEmpty()) { "Should be passed at least 1 argument!" }
+  return mapToEntries(entries.asList().associate { it })
+}
 
 internal class MappedPreference<T, R>(
   private val preference: Preference<T>,
