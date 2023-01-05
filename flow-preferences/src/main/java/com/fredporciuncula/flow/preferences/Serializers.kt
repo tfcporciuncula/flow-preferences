@@ -3,7 +3,7 @@ package com.fredporciuncula.flow.preferences
 import android.content.SharedPreferences
 
 /**
- * Represents an abstraction for serializing custom data types to store them in [SharedPreferences]
+ * Represents an abstraction for serializing custom data types to store them in [SharedPreferences].
  *
  * Note: For example can be used as a wrapper for json serializers like Gson, Moshi, etc.
  */
@@ -13,7 +13,7 @@ interface Serializer<T : Any> {
 }
 
 /**
- * Represents an abstraction for serializing custom nullable data types to store them in [SharedPreferences]
+ * Represents an abstraction for serializing custom nullable data types to store them in [SharedPreferences].
  *
  * Note: For example can be used as a wrapper for json serializers like Gson, Moshi, etc.
  */
