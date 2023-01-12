@@ -30,7 +30,7 @@ fun <T, R> Preference<T>.mapToEntries(entries: Map<T, R>): Preference<R> = map({
  */
 fun <T, R> Preference<T>.mapToEntries(vararg entries: Pair<T, R>): Preference<R> {
   require(entries.isNotEmpty()) { "Should be passed at least 1 argument!" }
-  return mapToEntries(entries.asList().associate { it })
+  return mapToEntries(entries.associate { it })
 }
 
 internal class MappedPreference<T, R>(
