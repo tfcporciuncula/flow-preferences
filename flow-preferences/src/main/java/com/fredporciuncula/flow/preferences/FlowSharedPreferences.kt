@@ -12,7 +12,7 @@ internal typealias KeyFlow = Flow<String?>
  */
 class FlowSharedPreferences @JvmOverloads constructor(
   val sharedPreferences: SharedPreferences,
-  val coroutineContext: CoroutineContext = Dispatchers.IO,
+  val coroutineContext: CoroutineContext = Dispatchers.IO
 ) {
 
   private val keyFlow: KeyFlow = sharedPreferences.keyFlow
