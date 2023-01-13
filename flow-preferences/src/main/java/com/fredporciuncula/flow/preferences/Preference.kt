@@ -49,13 +49,15 @@ interface Preference<T> {
   fun delete()
 
   /**
-   * Same as [delete], but the deletion is immediately committed and written out to persistent storage synchronously.
+   * Same as [delete], but the deletion is immediately committed and written out
+   * to persistent storage synchronously.
    * @return true if a preference was successfully deleted from storage, false otherwise
    */
   suspend fun deleteAndCommit(): Boolean
 
   /**
-   * Returns a conflated [Flow] that immediately emits the current stored value (or default value, if no value is stored) and keeps emitting on any change.
+   * Returns a conflated [Flow] that immediately emits the current stored value
+   * (or default value, if no value is stored) and keeps emitting on any change.
    */
   fun asFlow(): Flow<T>
 
@@ -65,7 +67,8 @@ interface Preference<T> {
   fun asCollector(): FlowCollector<T>
 
   /**
-   * Same as [asCollector], but the update is immediately committed and written out to persistent storage synchronously on each emission.
+   * Same as [asCollector], but the update is immediately committed and written out
+   * to persistent storage synchronously on each emission.
    *
    * @param throwOnFailure if an exception should be thrown when committing fails.
    */

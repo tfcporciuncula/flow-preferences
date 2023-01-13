@@ -8,7 +8,8 @@ import kotlin.coroutines.CoroutineContext
 internal typealias KeyFlow = Flow<String?>
 
 /**
- * Factory for [Preference] objects based on an instance of [SharedPreferences]. Commit operations happen on coroutineContext, which is [Dispatchers.IO] by default.
+ * Factory for [Preference] objects based on an instance of [SharedPreferences].
+ * Commit operations happen on coroutineContext, which is [Dispatchers.IO] by default.
  */
 class FlowSharedPreferences @JvmOverloads constructor(
   val sharedPreferences: SharedPreferences,
@@ -89,7 +90,8 @@ class FlowSharedPreferences @JvmOverloads constructor(
     NullableStringSetOfNullablesPreference(key, defaultValue, keyFlow, sharedPreferences, coroutineContext)
 
   /**
-   * Creates a [Preference] of type [T] with the given key and defaultValue. A [Serializer] of the same type must be passed so the value can be stored as a [String].
+   * Creates a [Preference] of type [T] with the given key and defaultValue.
+   * A [Serializer] of the same type must be passed so the value can be stored as a [String].
    */
   fun <T : Any> getObject(
     key: String,
@@ -99,7 +101,8 @@ class FlowSharedPreferences @JvmOverloads constructor(
     ObjectPreference(key, serializer, defaultValue, keyFlow, sharedPreferences, coroutineContext)
 
   /**
-   * Creates a [Preference] of type nullable [T] with the given key and defaultValue. A [Serializer] of the same type must be passed so the value can be stored as a [String].
+   * Creates a [Preference] of type nullable [T] with the given key and defaultValue.
+   * A [Serializer] of the same type must be passed so the value can be stored as a [String].
    */
   fun <T> getNullableObject(
     key: String,
