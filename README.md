@@ -4,9 +4,9 @@
 
 # Flow Preferences
 
-This is the [Kotlin Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) version of 
-[rx-preferences](https://github.com/f2prateek/rx-preferences). It follows pretty much the same API and 
-should feel familiar to anyone with experience there. But instead of RxJava, 
+This is the [Kotlin Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) version of
+[rx-preferences](https://github.com/f2prateek/rx-preferences). It follows pretty much the same API and
+should feel familiar to anyone with experience there. But instead of RxJava,
 we have [Coroutines](https://kotlinlang.org/docs/reference/coroutines/coroutines-guide.html) -- mainly Flows.
 
 ## Download
@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.fredporciuncula:flow-preferences:1.8.0'
+  implementation 'com.fredporciuncula:flow-preferences:1.9.0'
 }
 ```
 
@@ -52,14 +52,14 @@ myPref.asFlow().onEach { print(it) }.launchIn(scope)
 
 ### Set and commit support
 
-Preferences expose the regular `get()` and `put()` (named as `set()`) functions from `SharedPreferences`. 
+Preferences expose the regular `get()` and `put()` (named as `set()`) functions from `SharedPreferences`.
 But in addition to that, they also expose the `suspend` `setAndCommit()` function that puts the value and performs a
 commit in case you must ensure the preference is persisted right away. There's also a `deleteAndCommit()`.
 
 ### Collector support
 
-You can call `asCollector()` to ask a 
-[`FlowCollector`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/) 
+You can call `asCollector()` to ask a
+[`FlowCollector`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/)
 from a preference. You can then persist values from a Flow directly to the preference:
 
 ```kotlin
@@ -74,7 +74,7 @@ You can use `asSyncCollector()` if you want to put **and commit** the value (lik
 
 ### Enum support
 
-Enum classes work out of the box and are persisted as strings based on their `name` value (so make sure you `@Keep` them 
+Enum classes work out of the box and are persisted as strings based on their `name` value (so make sure you `@Keep` them
 if you're using R8):
 
 ```kotlin
@@ -101,8 +101,8 @@ val myPref = flowSharedPreferences.getObject("key", serializer, defaultValue = T
 
 ### Explicit nullability support
 
-By default, strings, objects, enums and sets can never be `null`, so consumers don't ever have to worry about 
-`null` checks. If you want to support nullable values, you can explicitly opt in by asking for the 
+By default, strings, objects, enums and sets can never be `null`, so consumers don't ever have to worry about
+`null` checks. If you want to support nullable values, you can explicitly opt in by asking for the
 nullable-friendly preference types:
 
 ```kotlin
