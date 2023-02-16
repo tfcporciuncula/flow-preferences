@@ -16,8 +16,8 @@ buildscript {
 
 ext.buildConfig = [
     'minSdk'    : 14,
-    'compileSdk': 31,
-    'targetSdk' : 31,
+    'compileSdk': 33,
+    'targetSdk' : 33,
 ]
 
 subprojects {
