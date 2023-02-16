@@ -13,9 +13,7 @@ fun <T, R> Preference<T>.map(
   reverse: (R) -> T
 ): Preference<R> = MappedPreference(this, mapper, reverse)
 
-/**
- * Return the preference parameter mapped to the values in the given map
- */
+/** Returns the preference parameter mapped to the values in the given map. */
 fun <T, R> Preference<T>.mapToEntries(entries: Map<T, R>): Preference<R> = map({
   entries[it]
     ?: entries[defaultValue]
@@ -25,9 +23,7 @@ fun <T, R> Preference<T>.mapToEntries(entries: Map<T, R>): Preference<R> = map({
     ?: throw IllegalArgumentException("No such key '$it' in entries")
 }
 
-/**
- * Return the preference parameter mapped to the values in the given pairs
- */
+/** Returns the preference parameter mapped to the values in the given pairs. */
 fun <T, R> Preference<T>.mapToEntries(vararg entries: Pair<T, R>): Preference<R> {
   require(entries.isNotEmpty()) { "Should be passed at least 1 argument!" }
   return mapToEntries(entries.associate { it })

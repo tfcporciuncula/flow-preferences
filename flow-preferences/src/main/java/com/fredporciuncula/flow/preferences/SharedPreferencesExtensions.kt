@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.callbackFlow
 
 val SharedPreferences.keyFlow
   get() = callbackFlow {
-    // key can be null when preferences are cleared on Android R+
+    // key can be null when preferences are cleared on API Level 30+
     val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key: String? -> trySend(key) }
     registerOnSharedPreferenceChangeListener(listener)
     awaitClose { unregisterOnSharedPreferenceChangeListener(listener) }
