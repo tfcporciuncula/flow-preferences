@@ -12,7 +12,7 @@ internal class StringPreference(
   private val coroutineContext: CoroutineContext
 ) : BasePreference<String>(key, keyFlow, sharedPreferences, coroutineContext) {
 
-  override fun get() = sharedPreferences.getString(key, defaultValue)!!
+  override fun get() = checkNotNull(sharedPreferences.getString(key, defaultValue))
 
   override fun set(value: String) = sharedPreferences.edit().putString(key, value).apply()
 

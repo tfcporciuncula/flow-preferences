@@ -1,8 +1,23 @@
-include ':flow-preferences'
-include ':flow-preferences-tests'
-include ':flow-preferences-sample'
+pluginManagement {
+  repositories {
+    mavenCentral()
+    google()
+    gradlePluginPortal()
+  }
+}
+
+dependencyResolutionManagement {
+  repositories {
+    mavenCentral()
+    google()
+  }
+}
+
+// https://docs.gradle.org/current/userguide/declaring_dependencies.html#sec:type-safe-project-accessors
+enableFeaturePreview('TYPESAFE_PROJECT_ACCESSORS')
 
 rootProject.name = 'flow-preferences-root'
 
-enableFeaturePreview("VERSION_CATALOGS")
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+include ':flow-preferences'
+include ':flow-preferences-tests'
+include ':flow-preferences-sample'

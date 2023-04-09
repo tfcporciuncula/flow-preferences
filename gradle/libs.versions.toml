@@ -1,8 +1,8 @@
 [versions]
-agp = '7.4.1'
+agp = '7.4.2'
 androidx-appCompat = '1.6.1'
 androidx-coreKtx = '1.9.0'
-androidx-lifecycle = '2.5.1'
+androidx-lifecycle = '2.6.1'
 androidx-preference = '1.2.0'
 androidx-constraintLayout = '2.1.4'
 androidx-test-coreKtx = '1.5.0'
@@ -10,9 +10,8 @@ androidx-test-espresso = '3.5.1'
 androidx-test-junitKtx = '1.1.5'
 coroutines = '1.6.4'
 detekt = '1.22.0'
-kotlin = '1.8.10'
-kotlinter = '3.13.0'
-publish = '0.18.0'
+kotlin = '1.8.20'
+mavenPublish = '0.18.0'
 truth = '1.1.3'
 
 [libraries]
@@ -26,9 +25,13 @@ androidx-test-espresso = { group = 'androidx.test.espresso', name = 'espresso-co
 androidx-test-junitKtx = { group = 'androidx.test.ext', name = 'junit-ktx', version.ref = 'androidx-test-junitKtx' }
 coroutines-core = { group = 'org.jetbrains.kotlinx', name = 'kotlinx-coroutines-core', version.ref = 'coroutines' }
 coroutines-android = { group = 'org.jetbrains.kotlinx', name = 'kotlinx-coroutines-android', version.ref = 'coroutines' }
-gradle-agp = { group = 'com.android.tools.build', name = 'gradle', version.ref = 'agp' }
-gradle-kotlin = { group = 'org.jetbrains.kotlin', name = 'kotlin-gradle-plugin', version.ref = 'kotlin' }
-gradle-kotlinter = { group = 'org.jmailen.gradle', name = 'kotlinter-gradle', version.ref = 'kotlinter' }
-gradle-detekt = { group = 'io.gitlab.arturbosch.detekt', name = 'detekt-gradle-plugin', version.ref = 'detekt' }
-gradle-publish = { group = 'com.vanniktech', name = 'gradle-maven-publish-plugin', version.ref = 'publish' }
+detekt-ktlint = { module = 'io.gitlab.arturbosch.detekt:detekt-formatting', version.ref = 'detekt' }
 truth = { group = 'com.google.truth', name = 'truth', version.ref = 'truth' }
+
+[plugins]
+android-application = { id = 'com.android.application', version.ref = 'agp' }
+android-library = { id = 'com.android.library', version.ref = 'agp' }
+detekt = { id = 'io.gitlab.arturbosch.detekt', version.ref = 'detekt' }
+kotlin-android = { id = 'org.jetbrains.kotlin.android', version.ref = 'kotlin' }
+kotlinter = { id = 'org.jmailen.gradle:kotlinter' }
+mavenPublish = { id = 'com.vanniktech.maven.publish', version.ref = 'mavenPublish' }

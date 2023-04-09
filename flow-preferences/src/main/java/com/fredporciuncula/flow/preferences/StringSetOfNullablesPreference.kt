@@ -12,7 +12,7 @@ internal class StringSetOfNullablesPreference(
   private val coroutineContext: CoroutineContext
 ) : BasePreference<Set<String?>>(key, keyFlow, sharedPreferences, coroutineContext) {
 
-  override fun get(): Set<String?> = sharedPreferences.getStringSet(key, defaultValue)!!
+  override fun get(): Set<String?> = checkNotNull(sharedPreferences.getStringSet(key, defaultValue))
 
   override fun set(value: Set<String?>) = sharedPreferences.edit().putStringSet(key, value).apply()
 

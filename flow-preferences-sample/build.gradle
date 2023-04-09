@@ -1,21 +1,15 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
+plugins {
+  alias(libs.plugins.android.application)
+  alias(libs.plugins.kotlin.android)
+}
 
 android {
-  compileSdkVersion buildConfig.compileSdk
+  namespace 'com.fredporciuncula.flow.preferences.sample'
 
   defaultConfig {
     applicationId 'com.fredporciuncula.flow.preferences.sample'
-    minSdkVersion buildConfig.minSdk
-    targetSdkVersion buildConfig.targetSdk
     versionCode 1
     versionName '1.0'
-
-    multiDexEnabled true
-  }
-
-  kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_11
   }
 
   buildFeatures {

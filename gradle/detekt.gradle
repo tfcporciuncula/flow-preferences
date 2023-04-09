@@ -1,6 +1,10 @@
-apply plugin: 'io.gitlab.arturbosch.detekt'
+apply plugin: libs.plugins.detekt.get().pluginId
 
 detekt {
   buildUponDefaultConfig = true
   config = files("$rootProject.rootDir/.detekt/detekt.yml")
+}
+
+dependencies {
+  detektPlugins libs.detekt.ktlint
 }

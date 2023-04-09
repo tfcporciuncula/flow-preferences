@@ -1,15 +1,12 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+plugins {
+  alias(libs.plugins.android.application)
+  alias(libs.plugins.kotlin.android)
+}
 
 android {
-  compileSdkVersion buildConfig.compileSdk
+  namespace 'com.fredporciuncula.flow.preferences.tests'
 
   defaultConfig {
-    minSdkVersion 26
-    targetSdkVersion buildConfig.targetSdk
-
-    multiDexEnabled true
-
     testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
   }
 }
